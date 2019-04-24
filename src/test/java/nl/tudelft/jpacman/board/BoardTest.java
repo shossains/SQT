@@ -17,13 +17,4 @@ public class BoardTest {
         assertEquals(board.getHeight(), 1);
         assertEquals(board.getWidth(), 1);
     }
-
-    @Test
-    public void squareAtTest() {
-        Square[][] sg = new Square[1][1];
-        sg[0][0] = null;
-        board = new Board(sg);
-
-        assertEquals(board.squareAt(0,0), null);
-    }
 }

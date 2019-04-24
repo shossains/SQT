@@ -97,16 +97,18 @@ Testing SquareAt method:
 @Test
     public void squareAtTest() {
         Square[][] sg = new Square[1][1];
+        sg[0][0] = null;
         board = new Board(sg);
 
-        assertEquals(board.squareAt(0,0),null);
+        assertEquals(board.squareAt(0,0), null);
     }
 ```
 
 `-ea` Stands for enable assertions. By leaving out this tag assertions errors won't show up because assertions that are part of the code will be ignored
 
+GitLab has assertions checking enabled because the testing stage fails for that particular test
 
-
+#### 2.9
 
 ### Exercise 3
 `TODO`
