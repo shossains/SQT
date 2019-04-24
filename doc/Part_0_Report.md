@@ -109,6 +109,10 @@ Testing SquareAt method:
 GitLab has assertions checking enabled because the testing stage fails for that particular test
 
 #### 2.9
+- `<module name="LineLength">` A line may only contain 100 characters or less
+- `<module name="MethodName">` The name of a method must obey the following RegEx `^[a-z][a-zA-Z0-9_]*$`
+- `<module name="TodoComment">` It checks if a comment contains TODO and highlight it if so
+
 
 ### Exercise 3
 `TODO`
