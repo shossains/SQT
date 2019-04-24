@@ -72,3 +72,12 @@
         assertThat(unit.getSquare()).isEqualTo(square);
     }
 ```
+
+### Exercise 3
+`TODO`
+
+### Exercise 4
+`TODO`
+
+### Exercise 5
+`TODO`
