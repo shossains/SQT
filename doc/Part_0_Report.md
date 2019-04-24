@@ -30,6 +30,8 @@
     }
 ```
 ### Exercise 2
+
+#### 2.7
 ```java
     /**
      * Resets the unit under test.
@@ -72,6 +74,39 @@
         assertThat(unit.getSquare()).isEqualTo(square);
     }
 ```
+
+#### 2.8
+The invariant checks if the board contains a square that is null.
+The test for the squareAt method returns the exception "Initial grid cannot contain null square".
+
+
+```java
+@Test
+    public void gridTest() {
+        Square[][] sg = new Square[1][1];
+        sg[0][0] = new BasicSquare();
+        board = new Board(sg);
+
+        assertEquals(board.getHeight(), 1);
+        assertEquals(board.getWidth(), 1);
+    }
+```
+
+Testing SquareAt method:
+```java
+@Test
+    public void squareAtTest() {
+        Square[][] sg = new Square[1][1];
+        board = new Board(sg);
+
+        assertEquals(board.squareAt(0,0),null);
+    }
+```
+
+`-ea` Stands for enable assertions. By leaving out this tag assertions errors won't show up because assertions that are part of the code will be ignored
+
+
+
 
 ### Exercise 3
 `TODO`
