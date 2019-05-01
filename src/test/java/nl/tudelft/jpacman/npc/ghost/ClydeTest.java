@@ -41,12 +41,11 @@ public class ClydeTest {
 
         ghostMapParser = new GhostMapParser(levelFactory, boardFactory, ghostFactory);
 
-        char[][] map = {{'#','#','#','#','#','#','#','#'},
+        char[][] map = {{'#','#','#','#','#','#','#','#'}, // deprecated layout - GOTO resources/text.txt
                         {'#',' ',' ',' ',' ',' ',' ','#'},
                         {'#','P','.','.','.','.','G','#'},
                         {'#',' ',' ',' ',' ',' ',' ','#'},
                         {'#','#','#','#','#','#','#','#'}};
-
 
         PlayerFactory playerFactory = new PlayerFactory(pacManSprites); //create player
         Player player = playerFactory.createPacMan();
@@ -73,6 +72,7 @@ public class ClydeTest {
         };
 
         launcher = new Launcher();
+        launcher.withMapFile("/test.txt");
         launcher.launch();
     }
 
@@ -91,8 +91,13 @@ public class ClydeTest {
         assertThat(game.isInProgress()).isTrue();
         assertThat(player.getScore()).isZero();
 
+        game.move(player, Direction.EAST); //Get points after eating a pellet
         game.move(player, Direction.EAST);
-        assertEquals(player.getScore(),10);
+        game.move(player, Direction.EAST);
+        game.move(player, Direction.EAST);
+        game.move(player, Direction.EAST);
+        game.move(player, Direction.EAST);
+        assertEquals(player.getScore(),60);
     }
 
     /**
