@@ -29,3 +29,15 @@ This class is also in charge for ending the game.
 The Level class creates all units, which includes the player,
 enemies and pellet's. It also creates the grid and board that 
 the game is played on.
+
+### Exercise 10
+**2.** 
+
+Good weather: </br>
+Implementing two test cases will make sure Clyde works as expected.
+Firstly testing where Clyde is close to Pacman and if he is moving away from him.
+Secondly testing if Clyde is moving near to Pacman if their distance is greater than 8 squares.
+
+Bad weather: <br/>
+- Test Clyde's behaviour if the player becomes null
+- Test Clyde's behaviour if there is a null square from the board
