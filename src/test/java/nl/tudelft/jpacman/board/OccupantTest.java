@@ -1,6 +1,8 @@
 package nl.tudelft.jpacman.board;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,12 +20,15 @@ class OccupantTest {
      */
     private Unit unit;
 
+    private Square square;
+
     /**
      * Resets the unit under test.
      */
     @BeforeEach
     void setUp() {
         unit = new BasicUnit();
+        square = new BasicSquare();
     }
 
     /**
@@ -31,8 +36,7 @@ class OccupantTest {
      */
     @Test
     void noStartSquare() {
-        // Remove the following placeholder:
-        assertThat(unit).isNotNull();
+        assertFalse(unit.hasSquare());
     }
 
     /**
@@ -41,8 +45,8 @@ class OccupantTest {
      */
     @Test
     void testOccupy() {
-        // Remove the following placeholder:
-        assertThat(unit).isNotNull();
+        unit.occupy(square);
+        assertThat(unit.getSquare()).isEqualTo(square);
     }
 
     /**
@@ -51,7 +55,11 @@ class OccupantTest {
      */
     @Test
     void testReoccupy() {
-        // Remove the following placeholder:
-        assertThat(unit).isNotNull();
+        unit.occupy(square);
+        assertTrue(unit.hasSquare());
+        unit.leaveSquare();
+        assertFalse(unit.hasSquare());
+        unit.occupy(square);
+        assertThat(unit.getSquare()).isEqualTo(square);
     }
 }
