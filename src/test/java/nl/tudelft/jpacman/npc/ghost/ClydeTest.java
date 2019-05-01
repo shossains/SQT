@@ -1,5 +1,6 @@
 package nl.tudelft.jpacman.npc.ghost;
 
+import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.game.Game;
@@ -17,14 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Class to test Clyde behavior.
  */
 public class ClydeTest {
 
+    private Launcher launcher;
     private Boolean temp = true;
     private GhostMapParser ghostMapParser;
+    private Game game;
 
     @BeforeEach
     void setUp(){
@@ -50,13 +54,13 @@ public class ClydeTest {
         Direction east = Direction.valueOf("EAST"); // set players direction east
         player.setDirection(east);
 
-        List<Player> playerList = new ArrayList<Player>(); // create list of players
+        List<Player> playerList = new ArrayList(); // create list of players
         playerList.add(player);
 
         Level level = ghostMapParser.parseMap(map); // create level
         level.registerPlayer(player);
 
-        Game game = new Game(pointCalculator) { // create game
+        game = new Game(pointCalculator) { // create game
             @Override
             public List<Player> getPlayers() {
                 return playerList;
@@ -68,8 +72,8 @@ public class ClydeTest {
             }
         };
 
-        game.start();
-
+        launcher = new Launcher();
+        launcher.launch();
     }
 
     /**
@@ -77,8 +81,18 @@ public class ClydeTest {
      */
     @Test
     public void TestClydeFarFromPacman(){
-        setUp();
-        assertThat(temp).isEqualTo(true);
+        launcher.getGame();
+        Game game = launcher.getGame();
+        Player player = game.getPlayers().get(0);
+
+        // start cleanly.
+        assertThat(game.isInProgress()).isFalse();
+        game.start();
+        assertThat(game.isInProgress()).isTrue();
+        assertThat(player.getScore()).isZero();
+
+        game.move(player, Direction.EAST);
+        assertEquals(player.getScore(),10);
     }
 
     /**
