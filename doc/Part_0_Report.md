@@ -115,10 +115,14 @@ GitLab has assertions checking enabled because the testing stage fails for that 
 
 
 ### Exercise 3
-`TODO`
+We can't exhaustively test our entire software project, because that would mean that would mean that we have to create an enormous amount of test which would be greater than our lifetime.
+Instead of that we should test many different aspects of the project.
 
 ### Exercise 4
-`TODO`
+Pesticide paradox is about the more you test your software, the more it becomes immune to those tests. 
+For software testers it implies they should create more different kinds of tests, and also change and improve those tests by using different techniques and methods.
 
 ### Exercise 5
-`TODO`
+We should automate tests as much as possible because it is less time consuming as the tests can be executed multiple times, 
+it frees up the time of the testers so they can focus more on interesting scenarios and exploratory testing. 
+Secondly continuous integration provides a quick feedback on your application.
