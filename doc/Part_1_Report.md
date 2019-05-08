@@ -39,17 +39,17 @@ Implementing two test cases will make sure Clyde works as expected.
 - Test if Clyde is moving near to Pacman if their distance is greater than 8 squares.
 
 Bad weather: <br/>
-- Test Clyde's behaviour if the player becomes null
+- Test Clyde's behaviour if the player isn't on the board.
 - Test Clyde's behaviour if there is a null square from the board
 
  See source code 
 
 ### Exercise 11
 Good weather: </br>
-- Test Inky movement when 
--
+- Test Inky's behaviour if Inky is behind Blinky.
+- Test Inky's behaviour if Inky is in front of Blinky.
 
 Bad weather: <br/>
-- 
-- 
--
+- Test Inky's behaviour if Blinky isn't on the board.
+- Test Inky's behaviour if player isn't on the board.
+- Test Inky's behaviour if 
