@@ -1,36 +1,29 @@
 package nl.tudelft.jpacman.npc.ghost;
 
 import com.google.common.collect.Lists;
-import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Direction;
-import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.LevelFactory;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.level.PlayerFactory;
 import nl.tudelft.jpacman.npc.Ghost;
-import nl.tudelft.jpacman.points.DefaultPointCalculator;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.sprite.PacManSprites;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
 /**
- * Class to test Clyde behavior.
+ * Class to test Clyde's behavior.
  */
 public class ClydeTest {
 
-    private Boolean temp = true;
     private GhostMapParser ghostMapParser;
     private Player player;
 
@@ -43,7 +36,7 @@ public class ClydeTest {
         GhostFactory ghostFactory = new GhostFactory(sprites);
         LevelFactory levelFactory = new LevelFactory(
             sprites,
-           ghostFactory,
+            ghostFactory,
             mock(PointCalculator.class));
         ghostMapParser = new GhostMapParser(levelFactory, new BoardFactory(sprites), ghostFactory);
         PlayerFactory playerFactory = new PlayerFactory(sprites);
@@ -55,7 +48,7 @@ public class ClydeTest {
      * Clyde should move towards Pacman.
      */
     @Test
-    public void TestClydeFarFromPacman(){
+    public void testClydeFarFromPacman() {
 
         Level level = ghostMapParser.parseMap(Lists.newArrayList("############",
             "#P.      .C#", "############"));
@@ -77,7 +70,7 @@ public class ClydeTest {
      * Clyde should move away from Pacman.
      */
     @Test
-    public void TestClydeCloseFromPacman(){
+    public void testClydeCloseFromPacman() {
         Level level = ghostMapParser.parseMap(Lists.newArrayList("############",
             "#P.C       #", "############"));
         Board board = level.getBoard();
@@ -97,7 +90,7 @@ public class ClydeTest {
      * Clyde shouldn't move since his movement is based on Pacman.
      */
     @Test
-    public void TestClydeWhenPacmanNull(){
+    public void testClydeWhenPacmanNull() {
         Level level = ghostMapParser.parseMap(Lists.newArrayList("############",
             "#C         #", "############"));
         Board board = level.getBoard();
@@ -113,7 +106,7 @@ public class ClydeTest {
      * Clyde shouldn't move since there doesn't exist a shortest path between Clyde and Pacman.
      */
     @Test
-    public void TestClydeWhenGridSquareNull(){
+    public void testClydeWhenGridSquareNull() {
         Level level = ghostMapParser.parseMap(Lists.newArrayList("############",
             "#P    #   C#", "############"));
         Board board = level.getBoard();
