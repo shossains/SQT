@@ -70,7 +70,6 @@ public class ClydeTest {
 
         assertEquals(direction, Optional.of(Direction.WEST));
 
-
     }
 
     /**
@@ -127,6 +126,5 @@ public class ClydeTest {
         Optional direction = clyde.nextAiMove();
 
         assertEquals(direction, Optional.empty());
-
     }
 }

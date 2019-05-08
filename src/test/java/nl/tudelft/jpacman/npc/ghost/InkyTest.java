@@ -39,6 +39,10 @@ public class InkyTest {
         player = playerFactory.createPacMan();
     }
 
+    /**
+     * Good weather case
+     * Test when Inky is behind Blinky followed by Pacman
+     */
     @Test
     public void TestInkyBehindBlinky() {
         Level level = ghostMapParser.parseMap(Lists.newArrayList(
@@ -48,14 +52,19 @@ public class InkyTest {
                       "#            #",
                       "##############"));
         Board board = level.getBoard();
+        level.registerPlayer(player);
 
         Ghost inky = Navigation.findUnitInBoard(Inky.class, board);
         Ghost blinky = Navigation.findUnitInBoard(Blinky.class, board);
         Optional direction = inky.nextAiMove();
 
-        assertEquals(direction, Optional.of(Direction.EAST));
+        assertEquals(direction, Optional.of(Direction.WEST));
     }
 
+    /**
+     * Good weather case
+     * Test when Inky is in front of Blinky, but behind Pacman
+     */
     @Test
     public void TestInkInFrontBlinky() {
         Level level = ghostMapParser.parseMap(Lists.newArrayList(
@@ -65,64 +74,102 @@ public class InkyTest {
                         "#            #",
                         "##############"));
         Board board = level.getBoard();
+        level.registerPlayer(player);
 
         Ghost inky = Navigation.findUnitInBoard(Inky.class, board);
         Ghost blinky = Navigation.findUnitInBoard(Blinky.class, board);
+        player.setDirection(Direction.WEST);
         Optional direction = inky.nextAiMove();
 
 
-        assertEquals(direction, Optional.of(Direction.EAST));
+        assertEquals(direction, Optional.of(Direction.WEST));
     }
 
+    /**
+     * Bad weather case
+     * Test what happens if there is no blinky
+     */
     @Test
     public void TestInkyNoBlinky() {
         Level level = ghostMapParser.parseMap(Lists.newArrayList(
               "##############",
                         "#            #",
-                        "#P       I   #",
+                        "#  I    P    #",
                         "#            #",
                         "##############"));
         Board board = level.getBoard();
+        level.registerPlayer(player);
+
+        Ghost inky = Navigation.findUnitInBoard(Inky.class, board);
+        Ghost blinky = Navigation.findUnitInBoard(Blinky.class, board);
+        player.setDirection(Direction.EAST);
+        Optional direction = inky.nextAiMove();
+
+        assertEquals(direction, Optional.empty());
+    }
+
+    /**
+     * Bad weather case
+     * Test what happens when Blinky is boxed in
+     */
+    @Test
+    public void TestEncapsulatedBlinky() {
+        Level level = ghostMapParser.parseMap(Lists.newArrayList(
+              "##############",
+                        "#   #        #",
+                        "#P #B#   I   #",
+                        "#   #        #",
+                        "##############"));
+        Board board = level.getBoard();
+        level.registerPlayer(player);
 
         Ghost inky = Navigation.findUnitInBoard(Inky.class, board);
         Ghost blinky = Navigation.findUnitInBoard(Blinky.class, board);
         Optional direction = inky.nextAiMove();
 
+        assertEquals(direction, Optional.empty());
     }
 
+    /**
+     * Good weather case
+     * Test when Pacman is between Inky and Blinky
+     */
     @Test
-    public void TestInky4() {
+    public void TestPacmanInBetween() {
         Level level = ghostMapParser.parseMap(Lists.newArrayList(
               "##############",
                         "#            #",
-                        "#P  B    I   #",
+                        "# I  P   B   #",
                         "#            #",
                         "##############"));
         Board board = level.getBoard();
+        level.registerPlayer(player);
 
         Ghost inky = Navigation.findUnitInBoard(Inky.class, board);
         Ghost blinky = Navigation.findUnitInBoard(Blinky.class, board);
         Optional direction = inky.nextAiMove();
 
-
+        assertEquals(direction, Optional.of(Direction.EAST));
     }
-
+    /**
+     * Bad weather case
+     * Test when there is no Pacman (never registered)
+     */
     @Test
-    public void TestInky5() {
+    public void TestNoPacman() {
         Level level = ghostMapParser.parseMap(Lists.newArrayList(
-              "##############",
-                        "#            #",
-                        "#P  B    I   #",
-                        "#            #",
-                        "##############"));
+            "##############",
+            "#            #",
+            "# I   P   B  #",
+            "#            #",
+            "##############"));
         Board board = level.getBoard();
 
         Ghost inky = Navigation.findUnitInBoard(Inky.class, board);
         Ghost blinky = Navigation.findUnitInBoard(Blinky.class, board);
         Optional direction = inky.nextAiMove();
 
-
+        assertEquals(direction, Optional.empty());
     }
-
 
 }
