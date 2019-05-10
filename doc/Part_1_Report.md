@@ -53,3 +53,8 @@ Bad weather: <br/>
 - Test Inky's behaviour if Blinky isn't on the board.
 - Test Inky's behaviour if player isn't on the board.
 - Test Inky's behaviour if 
+
+### Excrcise 12
+see 'Boundary test' word file       
+           
+           
