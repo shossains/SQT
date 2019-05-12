@@ -54,7 +54,33 @@ Bad weather: <br/>
 - Test Inky's behaviour if player isn't on the board.
 - Test Inky's behaviour if 
 
-### Excrcise 12
+### Exercise 12
 see 'Boundary test' word file       
            
+### Exercise 13
+```java
+    @ParameterizedTest
+    @CsvSource({
+        "0, 0, true", "-1, 1, false", "3, 2, false", "2, 3, true",
+        "1, 0, true", "1, -1, false", "2, 4, false", "0, 3, true"
+    })
+    public void TestWithinBorders(int x, int y, boolean expected) {
+        Square[][] grid = {
+            { mock(Square.class), mock(Square.class), mock(Square.class),  mock(Square.class) },
+            { mock(Square.class), mock(Square.class), mock(Square.class),  mock(Square.class) },
+            { mock(Square.class), mock(Square.class), mock(Square.class),  mock(Square.class) }
+        };
+        board = new Board(grid);
+
+        assertEquals(board.withinBorders(x,y), expected);
+
+    }
+```
+
+### Exercise 14
+
+### Exercise 15
+
+
+
            

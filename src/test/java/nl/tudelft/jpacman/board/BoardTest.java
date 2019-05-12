@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
 /**
  * A very simple test class to have
@@ -28,16 +29,27 @@ public class BoardTest {
         assertEquals(board.getWidth(), 1);
     }
 
-//    @ParameterizedTest
-//    @CsvSource({
-//        "0, 0", "-1, 1", "3, 2", "4,3",
-//        "1, -1", "2, 4", "3, 5"
-//    })
-//    public void TestWithinBorders(int x, int y) {
-//        Square[][] sg = new Square[3][3];
-//        board = new Board(sg);
-//
-//        assertEquals(board.withinBorders(x,y), boolean but dunno what);
-//
-//    }
+    /**
+     * Boundary testing of a 3 x 4  grid.
+     *
+     * @param x Row position within the square.
+     * @param y Collumn position within the square.
+     * @param expected Expected boolean result from the method.
+     */
+    @ParameterizedTest
+    @CsvSource({
+        "0, 0, true", "-1, 1, false", "3, 2, false", "2, 3, true",
+        "1, 0, true", "1, -1, false", "2, 4, false", "0, 3, true"
+    })
+    public void TestWithinBorders(int x, int y, boolean expected) {
+        Square[][] grid = {
+            { mock(Square.class), mock(Square.class), mock(Square.class),  mock(Square.class) },
+            { mock(Square.class), mock(Square.class), mock(Square.class),  mock(Square.class) },
+            { mock(Square.class), mock(Square.class), mock(Square.class),  mock(Square.class) }
+        };
+        board = new Board(grid);
+
+        assertEquals(board.withinBorders(x,y), expected);
+
+    }
 }
