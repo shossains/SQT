@@ -41,7 +41,7 @@ public class BoardTest {
         "0, 0, true", "-1, 1, false", "3, 2, false", "2, 3, true",
         "1, 0, true", "1, -1, false", "2, 4, false", "0, 3, true"
     })
-    public void TestWithinBorders(int x, int y, boolean expected) {
+    public void withinBordersTest(int x, int y, boolean expected) {
         Square[][] grid = {
             { mock(Square.class), mock(Square.class), mock(Square.class),  mock(Square.class) },
             { mock(Square.class), mock(Square.class), mock(Square.class),  mock(Square.class) },
@@ -49,7 +49,6 @@ public class BoardTest {
         };
         board = new Board(grid);
 
-        assertEquals(board.withinBorders(x,y), expected);
-
+        assertEquals(board.withinBorders(x, y), expected);
     }
 }
