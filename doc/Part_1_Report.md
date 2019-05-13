@@ -80,8 +80,16 @@ see 'Boundary test' word file
 ### Exercise 14
 If a specific part of the code is being tested several times over again with only different inputs
 we can use `@ParamaterizedTest` from JUnit5. This way we only have to write the test method just once and
-add parameters to this test method. The inputs we want to test are saved as CSV under the `@CsvSource`-tag
+add parameters to this test method.
+The inputs we want to test are saved as CSV under the `@CsvSource`-tag.
 
 ### Exercise 15
+The advantage of creating the same board for every test class is that the test will
+always give consistent results. If we would have used the same board over and over
+again we might have gotten different results for the same test cases. This is
+because other test might adjust this board and cause other test the fail.
+This holds for all tests which rely on an extra instance or object for the test case.
 
 ### Exercise 16
+
+### Exercise 17
