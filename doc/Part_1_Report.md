@@ -78,9 +78,10 @@ see 'Boundary test' word file
 ```
 
 ### Exercise 14
+If a specific part of the code is being tested several times over again with only different inputs
+we can use `@ParamaterizedTest` from JUnit5. This way we only have to write the test method just once and
+add parameters to this test method. The inputs we want to test are saved as CSV under the `@CsvSource`-tag
 
 ### Exercise 15
 
-
-
-           
+### Exercise 16
