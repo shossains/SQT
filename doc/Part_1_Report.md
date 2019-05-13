@@ -98,3 +98,5 @@ the default error message also prints what the actual value should have been. Th
 feedback is crucial in order to be able to find and resolve your errors
 
 ### Exercise 17
+Yes, they need to be tested. Wheter a method is private or not, a developer must
+ensure that his code behaves like it is expected to. Private method     are no expections.
