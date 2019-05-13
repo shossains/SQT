@@ -91,6 +91,10 @@ because other test might adjust this board and cause other test the fail.
 This holds for all tests which rely on an extra instance or object for the test case.
 
 ### Exercise 16
-
+In general, both assertions are the same. The only difference is the error message
+which will be printed if the test fails. If the `assertTrue` fails, we will not know
+what the correct int should have been. Whereas if we would have used `assertEquals`
+the default error message also prints what the actual value should have been. This
+feedback is crucial in order to be able to find and resolve your errors
 
 ### Exercise 17
