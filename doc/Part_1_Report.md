@@ -98,3 +98,13 @@ feedback is crucial in order to be able to find and resolve your errors
 ### Exercise 17
 Private methods do not need te be tested in a isolated way. They should be tested from a public class
 or interface which invokes the private method.
+
+### Exercise 18
+After spending some analyzing and understating Inky's behavior we have added
+a test case for Inky and adjusted the addSquare() method so we can add Inky
+to the gameboard.
+
+In general, we committed once per exercise. Sometimes multiple commits were needed 
+because a small discussion changed our final answer. CI sometimes failed because we
+didn't always execute Gradle check. So this also resulted into multiple commits per 
+exercise
