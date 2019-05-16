@@ -31,8 +31,6 @@ enemies and pellet's. It also creates the grid and board that
 the game is played on.
 
 ### Exercise 10
-**2.** 
-
 Good weather: </br>
 Implementing two test cases will make sure Clyde works as expected.
 - Test Clyde is close to Pacman and if he is moving away from him.
@@ -52,7 +50,7 @@ Good weather: </br>
 Bad weather: <br/>
 - Test Inky's behaviour if Blinky isn't on the board.
 - Test Inky's behaviour if player isn't on the board.
-- Test Inky's behaviour if 
+- Test Inky's behaviour if Blinky and Inky are encapsulated.
 
 ### Exercise 12
 see 'Boundary test' word file       

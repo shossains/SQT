@@ -112,10 +112,10 @@ public class InkyTest {
 
     /**
      * Bad weather case.
-     * Test what happens when Blinky is boxed in.
+     * Test what happens when Blinky and Inky are boxed in.
      */
     @Test
-    public void testEncapsulatedBlinky() {
+    public void testEncapsulatedBlinkyAndInky() {
         Level level = ghostMapParser.parseMap(Lists.newArrayList(
               "##############",
                         "#   #        #",
