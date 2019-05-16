@@ -5,7 +5,7 @@ import nl.tudelft.jpacman.sprite.Sprite;
 /**
  * Basic implementation of square.
  *
- * @author Jeroen Roosen 
+ * @author Shaan Hossain
  */
 class BasicSquare extends Square {
 

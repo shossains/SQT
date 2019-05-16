@@ -21,6 +21,8 @@ import static org.mockito.Mockito.mock;
 
 /**
  * Class to test Inky's behavior.
+ *
+ * @author Kevin Nanhekhan & Shaan Hossain
  */
 public class InkyTest {
     private GhostMapParser ghostMapParser;

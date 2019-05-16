@@ -21,6 +21,8 @@ import static org.mockito.Mockito.mock;
 
 /**
  * Class to test Clyde's behavior.
+ *
+ * @author Shaan Hossain & Kevin Nanhekhan
  */
 public class ClydeTest {
 
