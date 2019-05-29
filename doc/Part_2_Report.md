@@ -1,6 +1,8 @@
 # Report Part 2
 
 ### Exercise 1
+Some good weather cases we thought of:
+
 
 ### Exercise 2
 
