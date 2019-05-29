@@ -1,6 +1,5 @@
 package nl.tudelft.jpacman.level;
 
-import com.google.common.collect.Lists;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.npc.Ghost;
@@ -8,10 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class MapParserTest {
@@ -48,26 +46,13 @@ public class MapParserTest {
         verify(ghost).occupy(boardFactory.createGround());
     }
 
-
-
-    /**
-     * Test for when Pacman (P) is used in addSquare method.
-     */
-    @Test
-    public void testAddSquarePacMan() {
-        parser.addSquare(grid, ghosts, startingPositions, 0, 0, 'P');
-        assertEquals(boardFactory.createGround(), grid[0][0]);
-        verify(boardFactory).createGround();
-        verify(boardFactory, times(2)).createGround();
-    }
-
     /**
      * Test for when empty space ( ) is used in addSquare method.
      */
     @Test
     public void testAddSquareGround() {
-        parser.addSquare(grid, ghosts, startingPositions, 0, 0, ' ');
-        assertEquals(boardFactory.createGround(), grid[0][0]);
+        parser.addSquare(grid, ghosts, startingPositions, 1, 0, ' ');
+        assertEquals(boardFactory.createGround(), grid[1][0]);
         verify(boardFactory).createGround();
         verify(boardFactory, times(2)).createGround();
     }
@@ -83,22 +68,39 @@ public class MapParserTest {
         verify(boardFactory, times(2)).createWall();
     }
 
-//    @Test
-//    public void testAddSquarePellet() {
-//        parser.addSquare(grid, ghosts, startingPositions, 0, 0, '.');
-//        assertEquals(boardFactory.createGround(), grid[0][0]);
-//        //verify(levelFactory).createPellet();
-//    }
-//
-//    @Test
-//    public  void testAddSquareGhost() {
-//        parser.addSquare(grid, ghosts, startingPositions, 0, 0, 'G');
-////        verify(levelFactory).createGhost();
-//    }
+    /**
+     * Test for when wall (.) is used in addSquare method.
+     */
+    @Test
+    public void testAddSquarePellet() {
+        Pellet pellet = mock(Pellet.class);
+        when(levelFactory.createPellet()).thenReturn(pellet);
+        parser.addSquare(grid, ghosts, startingPositions, 0, 1, '.');
+        assertEquals(boardFactory.createGround(), grid[0][1]);
+        verify(levelFactory).createPellet();
+    }
 
+    /**
+     * Test for when wall (G) is used in addSquare method.
+     */
+    @Test
+    public  void testAddSquareGhost() {
+        when(levelFactory.createGhost()).thenReturn(mock(Ghost.class));
+        parser.addSquare(grid, ghosts, startingPositions, 1, 1, 'G');
+        assertNull(grid[1][1]);
+        verify(levelFactory).createGhost();
+    }
 
-
-
+    /**
+     * Test for when Pacman (P) is used in addSquare method.
+     */
+    @Test
+    public void testAddSquarePacMan() {
+        parser.addSquare(grid, ghosts, startingPositions, 0, 0, 'P');
+        assertEquals(boardFactory.createGround(), grid[0][0]);
+        verify(boardFactory).createGround();
+        verify(boardFactory, times(2)).createGround();
+    }
 
 
 }
