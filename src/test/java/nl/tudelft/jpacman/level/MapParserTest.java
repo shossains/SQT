@@ -19,14 +19,12 @@ public class MapParserTest {
     @Mock
     private LevelFactory levelFactory = mock(LevelFactory.class);
     private BoardFactory boardFactory = mock(BoardFactory.class);
+
     private Ghost ghost = mock(Ghost.class);
-
-
-    private List<Ghost> ghosts = new ArrayList<>();
-    private List<Square> startingPositions = new ArrayList<>();
+    private List<Ghost> ghosts = mock(List.class);
+    private List<Square> startingPositions = mock(List.class);
 
     private MapParser parser;
-    private ArrayList<String> list;
     private Square[][] grid = {
         { mock(Square.class), mock(Square.class) },
         { mock(Square.class), mock(Square.class) }
@@ -35,38 +33,67 @@ public class MapParserTest {
     @BeforeEach
     void setup() {
         parser = new MapParser(levelFactory, boardFactory);
-        list = Lists.newArrayList("############",
-            "#P        C#", "############");
+
     }
 
+    /**
+     * Tests if mocked classes are called in the method makeGhostSquare.
+     */
+    @Test
+    public void testMakeGhostSquare() {
+        parser.makeGhostSquare(ghosts, ghost);
+
+        verify(boardFactory).createGround();
+        verify(ghosts).add(ghost);
+        verify(ghost).occupy(boardFactory.createGround());
+    }
+
+
+
+    /**
+     * Test for when Pacman (P) is used in addSquare method.
+     */
     @Test
     public void testAddSquarePacMan() {
         parser.addSquare(grid, ghosts, startingPositions, 0, 0, 'P');
         assertEquals(boardFactory.createGround(), grid[0][0]);
+        verify(boardFactory).createGround();
+        verify(boardFactory, times(2)).createGround();
     }
 
+    /**
+     * Test for when empty space ( ) is used in addSquare method.
+     */
     @Test
     public void testAddSquareGround() {
         parser.addSquare(grid, ghosts, startingPositions, 0, 0, ' ');
         assertEquals(boardFactory.createGround(), grid[0][0]);
+        verify(boardFactory).createGround();
+        verify(boardFactory, times(2)).createGround();
     }
 
+    /**
+     * Test for when wall (#) is used in addSquare method.
+     */
     @Test
     public void testAddSquareWall() {
         parser.addSquare(grid, ghosts, startingPositions, 0, 0, '#');
         assertEquals(boardFactory.createWall(), grid[0][0]);
+        verify(boardFactory).createWall();
+        verify(boardFactory, times(2)).createWall();
     }
 
 //    @Test
 //    public void testAddSquarePellet() {
-//        parser.addSquare(grid, ghosts, squares, 0, 0, '.');
-//        assertEquals(null, grid[0][0]);
+//        parser.addSquare(grid, ghosts, startingPositions, 0, 0, '.');
+//        assertEquals(boardFactory.createGround(), grid[0][0]);
+//        //verify(levelFactory).createPellet();
 //    }
 //
 //    @Test
 //    public  void testAddSquareGhost() {
-//        parser.addSquare(grid, ghosts, squares, 0, 0, 'G');
-//        assertEquals(null, grid[0][0]);
+//        parser.addSquare(grid, ghosts, startingPositions, 0, 0, 'G');
+////        verify(levelFactory).createGhost();
 //    }
 
 
