@@ -7,24 +7,33 @@ import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.npc.Ghost;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.when;
 
+/**
+ * Test class for the class MapParser.
+ */
 public class MapParserTest {
 
     /**
-     * Mocked LevelFactory, used for creating the MapParser and verifying if methods of this class are used.
+     * Mocked LevelFactory, used for creating the MapParser
+     * and verifying if methods of this class are used.
      */
     private LevelFactory levelFactory = mock(LevelFactory.class);
 
     /**
-     * Mocked BoardFactory, used for creating the MapParser and verifying if methods of this class are used.
+     * Mocked BoardFactory, used for creating the MapParser
+     * and verifying if methods of this class are used.
      */
     private BoardFactory boardFactory = mock(BoardFactory.class);
 
@@ -55,6 +64,11 @@ public class MapParserTest {
         { mock(Square.class), mock(Square.class) },
         { mock(Square.class), mock(Square.class) }
     };
+
+    /**
+     * Integer used for out of bound testing.
+     */
+    public static final int OUT_OF_BOUND = 3;
 
     /**
      * Setup for each test for re-usability purposes.
@@ -145,7 +159,7 @@ public class MapParserTest {
     @Test
     void testAddSquareInvalidPosition() {
         assertThrows(ArrayIndexOutOfBoundsException.class, () ->
-            parser.addSquare(grid, ghosts, startingPositions, 0, 3, 'G')
+            parser.addSquare(grid, ghosts, startingPositions, 0, OUT_OF_BOUND, 'G')
         );
     }
 
@@ -156,7 +170,7 @@ public class MapParserTest {
     void testParseMapNull() {
         ArrayList<String> text = null;
         assertThrows(PacmanConfigurationException.class,
-            ()-> parser.parseMap(text));
+            () -> parser.parseMap(text));
     }
 
     /**
@@ -166,7 +180,7 @@ public class MapParserTest {
     void testParseMapEmptyInput() {
         ArrayList<String> text = Lists.newArrayList();
         assertThrows(PacmanConfigurationException.class,
-            ()-> parser.parseMap(text));
+            () -> parser.parseMap(text));
     }
 
     /**
@@ -176,7 +190,7 @@ public class MapParserTest {
     void testParseMapEmptyLine() {
         ArrayList<String> text = Lists.newArrayList("");
         assertThrows(PacmanConfigurationException.class,
-            ()-> parser.parseMap(text));
+            () -> parser.parseMap(text));
     }
 
     /**
@@ -186,7 +200,7 @@ public class MapParserTest {
     void testParseMapInvalidSize() {
         ArrayList<String> text = Lists.newArrayList("##", "###");
         assertThrows(PacmanConfigurationException.class,
-            ()-> parser.parseMap(text));
+            () -> parser.parseMap(text));
     }
 
     /**
@@ -203,8 +217,13 @@ public class MapParserTest {
      */
     @Test
     void testParseMapNoInputSource() {
-        InputStream source = MapParser.class.getResourceAsStream("");
-        assertThrows(PacmanConfigurationException.class, () -> parser.parseMap(source));
+        try {
+            InputStream source = MapParser.class.getResourceAsStream("");
+            assertThrows(PacmanConfigurationException.class, () -> parser.parseMap(source));
+            source.close();
+        } catch (Exception e) {
+        }
+
     }
 
 
