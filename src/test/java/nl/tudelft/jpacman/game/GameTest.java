@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
@@ -36,6 +37,7 @@ public class GameTest {
         assertThat(game.isInProgress()).isFalse();
         game.start();
         assertThat(game.isInProgress()).isTrue();
+        verify(level, times(1)).start();
         game.stop();
         assertThat(game.isInProgress()).isFalse();
     }
@@ -48,8 +50,30 @@ public class GameTest {
         assertThat(game.isInProgress()).isFalse();
         game.start();
         assertThat(game.isInProgress()).isTrue();
+        verify(level, times(1)).start();
         game.start();
         assertThat(game.isInProgress()).isTrue();
+        verify(level, times(1)).start();
+    }
+
+    /**
+     * Test to see if the game isn't in progress if there are no players.
+     */
+    @Test
+    void testStartNoPlayer() {
+        when(level.isAnyPlayerAlive()).thenReturn(false);
+        game.start();
+        assertEquals(game.isInProgress(), false);
+    }
+
+    /**
+     * Test to see if the game isn't in progress if there are no pellets.
+     */
+    @Test
+    void testStartNoPellet() {
+        when(level.remainingPellets()).thenReturn(0);
+        game.start();
+        assertEquals(game.isInProgress(), false);
     }
 
 }
