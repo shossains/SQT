@@ -8,6 +8,7 @@ import nl.tudelft.jpacman.npc.Ghost;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -217,11 +218,14 @@ public class MapParserTest {
      */
     @Test
     void testParseMapNoInputSource() {
+        InputStream source = MapParser.class.getResourceAsStream("");
         try {
-            InputStream source = MapParser.class.getResourceAsStream("");
             assertThrows(PacmanConfigurationException.class, () -> parser.parseMap(source));
-            source.close();
-        } catch (Exception e) {
+        } finally {
+            try {
+                source.close();
+            } catch (IOException e) {
+            }
         }
 
     }
