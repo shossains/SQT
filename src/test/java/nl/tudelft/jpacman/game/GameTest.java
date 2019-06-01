@@ -7,18 +7,24 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
+/**
+ * Class to test the game.
+ */
 public class GameTest {
     private PointCalculator pc;
     private Player player;
     private Level level;
     private Game game;
 
+    /**
+     * Setting up the mocks for the tests.
+     */
     @BeforeEach
     void setup() {
         pc = mock(PointCalculator.class);
@@ -63,7 +69,7 @@ public class GameTest {
     void testStartNoPlayer() {
         when(level.isAnyPlayerAlive()).thenReturn(false);
         game.start();
-        assertEquals(game.isInProgress(), false);
+        assertFalse(game.isInProgress());
     }
 
     /**
@@ -73,7 +79,7 @@ public class GameTest {
     void testStartNoPellet() {
         when(level.remainingPellets()).thenReturn(0);
         game.start();
-        assertEquals(game.isInProgress(), false);
+        assertFalse(game.isInProgress());
     }
 
 }
