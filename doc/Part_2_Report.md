@@ -96,7 +96,7 @@ With these test together we have achieved `100% Class coverage`
 
 
 ### Exercise 5
-See level.PlayerCollisionTest_deprecated
+See level.PlayerCollisionTestOld
 
 ### Exercise 6
 See level.CollisionMapTest, level.PlayerCollisionTest and level.DefaultPlayerInteractionTest

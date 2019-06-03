@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 /**
  * Test suite for the class PlayerCollisions.
  */
-public class PlayerCollisionsTest_deprecated {
+public class PlayerCollisionsTestOld {
     private PointCalculator pointCalculator;
     private PlayerCollisions playerCollisions;
     private Player player;

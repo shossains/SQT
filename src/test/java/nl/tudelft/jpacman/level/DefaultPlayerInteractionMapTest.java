@@ -6,7 +6,7 @@ import nl.tudelft.jpacman.points.PointCalculator;
  * Test class for DefaultPlayerInteractionMap.
  * This class extends from CollisionMapTest.
  */
-public class DefaultPlayerInteractionMapTest extends CollisionMapTest{
+public class DefaultPlayerInteractionMapTest extends CollisionMapTest {
 
     /**
      * Method to override the abstract method in CollisionMapTest.
