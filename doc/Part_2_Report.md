@@ -102,6 +102,17 @@ See level.PlayerCollisionTestOld
 See level.CollisionMapTest, level.PlayerCollisionTest and level.DefaultPlayerInteractionTest
 
 ### Exercise 7
+When comparing the original tests and the tests we wrote, 
+we can see for the collisions of the game, that the original tests 
+only covered the PlayerCollisions class and not the CollisionInteractionMap and DefaultPlayerInteractionMap.
+From the PlayerCollisions class not every method is covered completely.
+From the method "collide" the third if statement isn't covered. Also the method pelletColliding isn't covered.
+
+The tests we wrote ourselves cover the DefaultPlayerInteractionMap and the CollisionInteractionMap almost completely 
+(except for the method collide in the case the collisionHandler is null 
+and getInheritance method for the if statement in the for-loop).
+Compared to the original tests, our tests cover all lines from the PlayerCollision class.
+
 
 ### Exercise 8
 
