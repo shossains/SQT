@@ -123,8 +123,16 @@ the same value. By using different seeds we can cover all decisions.
 
 
 ### Exercise 9
+The source of the flakiness is found in the `Thread.sleep()` line. This sleep is used to let the ghosts move
+around the board. However the movement of the ghost are not consistent and might therefore give different results
+with every test. As soon as a test relies on any form of randomness the test can be flagged as flaky. Writing big
+test may often result into flaky tests, as can be seen here. A simple solution would be by splitting the test and
+testing `eaten-by-ghost` separately. Using mocks to simulate necessary behavior is also a good solution against
+flaky tests.
+
 
 ### Exercise 10
+
 
 ### Exercise 11
 
