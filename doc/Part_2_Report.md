@@ -115,6 +115,12 @@ Compared to the original tests, our tests cover all lines from the PlayerCollisi
 
 
 ### Exercise 8
+One way to test the method is by observing it's behavior manually. If we execute the random method a thousand
+times and only the directions `East`, `West` and `South` are returned we can conclude that the random method
+is probably not well configured, This type of testing is very unreliable of course. A better approach to
+this problem would be using seeds for the random method. With this seed the random method will always return
+the same value. By using different seeds we can cover all decisions.
+
 
 ### Exercise 9
 
