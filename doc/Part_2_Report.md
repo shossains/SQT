@@ -8,7 +8,7 @@ Some good weather cases we thought of:
  - Test for wall (#) in addSquare method.
  - Test for pellet (.) in addSquare method.
  - Test for ghost (G) in addSquare method.
- - Test for pacman (P) in addSquare method.
+ - Test for Pacman (P) in addSquare method.
 
  
 ### Exercise 2
@@ -92,7 +92,11 @@ With these test together we have achieved `100% Class coverage`
 
 
 ### Exercise 4
-see File
+|                    	|                	|         	|                                                            	|                                             	|                                             	|                          	|                          	|
+|--------------------	|----------------	|---------	|------------------------------------------------------------	|---------------------------------------------	|---------------------------------------------	|--------------------------	|--------------------------	|
+| <b>Collider</b>    	| Player         	| Player  	| Player                                                     	| Player                                      	| Player                                      	| Ghost                    	| Ghost                    	|
+| <b>Collidee</b>    	| Empty square   	| Wall    	| Pellet                                                     	| Last pellet                                 	| Ghost                                       	| Player                   	| Pellet                   	|
+| <b>Consequence</b> 	| Move to square 	| Nothing 	| Move to square<br/>Pellet disappear<br/>Player gets points 	| Move to square<br/>Player wins<br/>End game 	| Move to square<br/>Player dies<br/>End game 	| Player dies<br/>End game 	| Pellet becomes invisible 	|
 
 
 ### Exercise 5
@@ -171,7 +175,7 @@ See file
 
 
 ### Exercise 16
-The staticAnalysis tool indicates that the build has been succesfull without any warnings.
+The staticAnalysis tool indicates that the build has been successful without any warnings.
 The reason that AmazingPointCalculator doesn't trigger any PMD warnings is because the class executes an abnormal behavior that has code implemented similiar to other methods in the project.
 So PMD couldn't tell the difference from the way the code has been structured and therefore couldn't tell apart that this class will execute some abnormal behavior.
 Looking at the OWASP top 10 vulnerability list, we can say that this 'Using Components with Known Vulnerabilities'.
