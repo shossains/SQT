@@ -151,6 +151,9 @@ asserts at most per test. If your test requires multiple mocks you should consid
 
 
 ### Exercise 13
+Mocking should be used whenever we need a dependency of something equivalent. However, mocking should be avoided
+if your class is too coupled
+
 
 ### Exercise 14 
 
