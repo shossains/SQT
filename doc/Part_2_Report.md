@@ -88,12 +88,7 @@ With these test together we have achieved `100% Class coverage`
     }
 ```
 ### Exercise 4
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
+see File
 
 ### Exercise 5
 See level.PlayerCollisionTestOld
@@ -165,7 +160,7 @@ When running the AmazingPointCalculator instead of the DefaultPointCalculator, i
 
 
 ### Exercise 15
-
+See file
 
 ### Exercise 16
 
