@@ -151,6 +151,13 @@ rather than estimating how much testing has been done already.
 ### Exercise 13
 
 ### Exercise 14
+When running the AmazingPointCalculator instead of the DefaultPointCalculator, it seems like the following four anomalies occur:
+* After eating more around 28 pellets or more, the PointCalculator deducts 15 points after each pellet.
+* The score counter seems to suddenly change to an enormous negative number, possibly due to an overflow, 
+    after eating around 15 pellets or more and facing West.
+* After eating more than 34 pellets and facing North direction the game stops, and you get a Runtime exception
+* After eating more than 34 pellets Pacman suddenly dies, without any of the ghosts killing it.
+
 
 ### Exercise 15
 
