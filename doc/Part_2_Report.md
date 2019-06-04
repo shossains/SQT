@@ -132,11 +132,21 @@ flaky tests.
 
 
 ### Exercise 10
+The biggest disadvantage is that 100% code coverage creates this illusion that everything has been tested and is
+therefore bug-free. But this is `NOT` the case. Even though every piece of code is covered, bugs might still be
+present.  //TODO
+Code coverage should be used as a tool to indicate how much someone has not tested the software,
+rather than estimating how much testing has been done already.
 
 
 ### Exercise 11
+- The main disadvantage of mocking is that is that test can become very slow if there are many mocks involved.
+- Since mocks are a reflection of the actual implementation it can slow down the testing process significantly.
+- Mocking makes the setup of test very complicated (, much more complicated than test without mocks).
+
 
 ### Exercise 12
+
 
 ### Exercise 13
 
