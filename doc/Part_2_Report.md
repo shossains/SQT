@@ -134,8 +134,7 @@ flaky tests.
 ### Exercise 10
 The biggest disadvantage is that 100% code coverage creates this illusion that everything has been tested and is
 therefore bug-free. But this is `NOT` the case. Even though every piece of code is covered, bugs might still be
-present.  //TODO
-Code coverage should be used as a tool to indicate how much someone has not tested the software,
+present. Code coverage should be used as a tool to indicate how much someone has not tested the software,
 rather than estimating how much testing has been done already.
 
 
@@ -146,11 +145,14 @@ rather than estimating how much testing has been done already.
 
 
 ### Exercise 12
+Test tend to decrease in execution time when they grow bigger and/or when multiple mocks are used. To
+avoid slow test or to speed them up, a good place to start is to break up big tests into smaller ones. Three/four
+asserts at most per test. If your test requires multiple mocks you should consider making your class less coupled.
 
 
 ### Exercise 13
 
-### Exercise 14
+### Exercise 14 
 
 ### Exercise 15
 
