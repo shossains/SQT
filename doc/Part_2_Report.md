@@ -1,5 +1,6 @@
 # Report Part 2
 
+
 ### Exercise 1
 Some good weather cases we thought of:
  - Verifying if methods from mocked classes in method makeGhostSquare are used.
@@ -23,6 +24,7 @@ Some bad weather cases we thought of:
  - Test if exception is thrown when an empty string filename is used in parseMap method.
  - Test if exception is thrown when an inputStream with an empty resource is used in parseMap method.
  
+
 ### Exercise 3
 With these test together we have achieved `100% Class coverage`
 , `57% Method coverage`, `70% Line coverage` 
@@ -87,14 +89,19 @@ With these test together we have achieved `100% Class coverage`
         assertFalse(game.isInProgress());
     }
 ```
+
+
 ### Exercise 4
 see File
+
 
 ### Exercise 5
 See level.PlayerCollisionTestOld
 
+
 ### Exercise 6
 See level.CollisionMapTest, level.PlayerCollisionTest and level.DefaultPlayerInteractionTest
+
 
 ### Exercise 7
 When comparing the original tests and the tests we wrote, 
@@ -162,6 +169,7 @@ When running the AmazingPointCalculator instead of the DefaultPointCalculator, i
 ### Exercise 15
 See file
 
+
 ### Exercise 16
 The staticAnalysis tool indicates that the build has been succesfull without any warnings.
 The reason that AmazingPointCalculator doesn't trigger any PMD warnings is because the class executes an abnormal behavior that has code implemented similiar to other methods in the project.
@@ -170,6 +178,7 @@ Looking at the OWASP top 10 vulnerability list, we can say that this 'Using Comp
 This is because we replaced our PointCalculator component (DefaultPointCalculator) with that of a third party one into our application. 
 Since we are unsure if the component works as it should do, because we got te component from a third party, their is a chance that this component has a vulnerability.
 To solve the vulnerability we should always check if we receive components from a trusted source and if the component is up to date.  We should also check if the component works as expected.
+
 
 ### Exercise 17
 Dynamically loaded classes enables the developer to install software components at runtime. This means that classes are loaded on demand and at the last moment possible. 
