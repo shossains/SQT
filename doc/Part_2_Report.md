@@ -163,5 +163,12 @@ When running the AmazingPointCalculator instead of the DefaultPointCalculator, i
 See file
 
 ### Exercise 16
+The staticAnalysis tool indicates that the build has been succesfull without any warnings.
+The reason that AmazingPointCalculator doesn't trigger any PMD warnings is because the class executes an abnormal behavior that has code implemented similiar to other methods in the project.
+So PMD couldn't tell the difference from the way the code has been structured and therefore couldn't tell apart that this class will execute some abnormal behavior.
+Looking at the OWASP top 10 vulnerability list, we can say that this 'Using Components with Known Vulnerabilities'.
+This is because we replaced our PointCalculator component (DefaultPointCalculator) with that of a third party one into our application. 
+Since we are unsure if the component works as it should do, because we got te component from a third party, their is a chance that this component has a vulnerability.
+To solve the vulnerability we should always check if we receive components from a trusted source and if the component is up to date.  We should also check if the component works as expected.
 
 ### Exercise 17
