@@ -172,3 +172,6 @@ Since we are unsure if the component works as it should do, because we got te co
 To solve the vulnerability we should always check if we receive components from a trusted source and if the component is up to date.  We should also check if the component works as expected.
 
 ### Exercise 17
+Dynamically loaded classes enables the developer to install software components at runtime. This means that classes are loaded on demand and at the last moment possible. 
+The security problem that comes with this, is that third-party can use the component for malicious use, so the developer should check if the components comes from a trusted source.
+The developer should also create his own dynamically loaded classes and, in order to achieve isolation from dynamically loaded component, the developer should also separate it with by using different class loaders. 
