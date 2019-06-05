@@ -171,7 +171,7 @@ When running the AmazingPointCalculator instead of the DefaultPointCalculator, i
 
 
 ### Exercise 15
-See attached `.docx` file
+See attached `PlotGraphs.docx` file
 
 
 ### Exercise 16
