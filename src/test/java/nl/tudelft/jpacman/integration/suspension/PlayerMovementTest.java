@@ -34,52 +34,9 @@ import static org.mockito.Mockito.verify;
 public class PlayerMovementTest {
 
     private Launcher launcher;
-    private Boolean temp = true;
-    private GhostMapParser ghostMapParser;
-    private Game game;
 
     @BeforeEach
-    void setUp() throws IOException {
-        PacManSprites pacManSprites = new PacManSprites();
-        BoardFactory boardFactory = new BoardFactory(pacManSprites);
-        GhostFactory ghostFactory = new GhostFactory(pacManSprites);
-        PointCalculator pointCalculator = new DefaultPointCalculator();
-
-        LevelFactory levelFactory = new LevelFactory(pacManSprites, ghostFactory, pointCalculator);
-
-        ghostMapParser = new GhostMapParser(levelFactory, boardFactory, ghostFactory);
-
-        char[][] map = {{'#','#','#','#','#','#','#','#'},
-            {'#',' ',' ',' ',' ',' ',' ','#'},
-            {'#','P','.','.','.','.','G','#'},
-            {'#',' ',' ',' ',' ',' ',' ','#'},
-            {'#','#','#','#','#','#','#','#'}};
-
-
-        PlayerFactory playerFactory = new PlayerFactory(pacManSprites); //create player
-        Player player = playerFactory.createPacMan();
-
-        Direction east = Direction.valueOf("EAST"); // set players direction east
-        player.setDirection(east);
-
-        List<Player> playerList = new ArrayList(); // create list of players
-        playerList.add(player);
-
-        Level level = ghostMapParser.parseMap(map); // create level
-        level.registerPlayer(player);
-
-        game = new Game(pointCalculator) { // create game
-            @Override
-            public List<Player> getPlayers() {
-                return playerList;
-            }
-
-            @Override
-            public Level getLevel() {
-                return level;
-            }
-        };
-
+    void setUp() {
         launcher = new Launcher();
         launcher.withMapFile("/map.txt").launch();
     }
@@ -88,9 +45,10 @@ public class PlayerMovementTest {
      *
      */
     @Test
-    public void TestClydeFarFromPacman(){
+    public void TestClydeFarFromPacman() throws InterruptedException {
         Game game = launcher.getGame();
         Player player = game.getPlayers().get(0);
+        Thread.sleep(2000);
 
         // start cleanly.
         assertThat(game.isInProgress()).isFalse();
@@ -101,8 +59,6 @@ public class PlayerMovementTest {
         game.move(player, Direction.EAST); //eat pellet and earn points
         assertEquals(player.getScore(),10);
 
-        Pellet p = mock(Pellet.class);
-        verify(p).leaveSquare();
     }
 
 }

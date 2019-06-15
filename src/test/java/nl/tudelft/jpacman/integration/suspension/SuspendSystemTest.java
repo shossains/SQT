@@ -1,7 +1,7 @@
 package nl.tudelft.jpacman.integration.suspension;
 
 import nl.tudelft.jpacman.Launcher;
-import nl.tudelft.jpacman.board.Direction;
+import nl.tudelft.jpacman.board.Unit;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.npc.Ghost;
@@ -9,30 +9,24 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * An example test class that conducts integration tests.
  */
 public class SuspendSystemTest {
-
-    private Player player;
-    private Ghost ghost;
     private Launcher launcher;
 
     /**
      * Start a launcher, which can display the user interface.
      */
     @BeforeEach
-    public void before() {
+    void setUp() {
         launcher = new Launcher();
-        player = mock(Player.class);
-        ghost = mock(Ghost.class);
+        launcher.withMapFile("/map.txt").launch();
     }
 
     /**
@@ -43,12 +37,32 @@ public class SuspendSystemTest {
         launcher.dispose();
     }
 
-    @Test
-    public void testSuspendGame() {
-        launcher.launch();
-        getGame().start();
-        getGame().stop();
-        assertThat(getGame().isInProgress()).isFalse();
+    /**
+     * Test how the ghosts and player behave after the game stops
+     * @throws InterruptedException
+     */
+    @Test //TODO Check for player SETDIRECTION behavior after 'game.stop'
+    public void testMovingGhost() throws InterruptedException {
+        Game game = getGame();
+        List<Unit> ghostBefore = game.getLevel().getBoard().squareAt(6, 1).getOccupants(); //get ghostS start location
+        assertEquals(ghostBefore.get(0).getClass().toString(),"class nl.tudelft.jpacman.npc.ghost.Blinky"); //check if the square contains a ghost
+
+        game.stop();
+        Thread.sleep(250);
+
+        List<Unit> ghostAfter = game.getLevel().getBoard().squareAt(6, 1).getOccupants(); //get ghost start location
+        assertEquals(ghostAfter.get(0).getClass().toString(), "class nl.tudelft.jpacman.npc.ghost.Blinky"); //ghost should still be there
+
+        game.start();
+        Thread.sleep(160); //let the ghost move
+
+        List<Unit> emptySquare = game.getLevel().getBoard().squareAt(6, 1).getOccupants(); //get ghostSquare
+        assertEquals(0,emptySquare.size()); //ghost has left start location
+
+        game.stop();
+
+        List<Unit> ghostNewLocation = game.getLevel().getBoard().squareAt(5, 1).getOccupants(); //get new ghost location
+        assertEquals(ghostNewLocation.get(0).getClass().toString(), "class nl.tudelft.jpacman.npc.ghost.Blinky"); //ghost should be on it's new location
     }
 
     /**
@@ -65,6 +79,7 @@ public class SuspendSystemTest {
         getGame().start();
         assertThat(getGame().isInProgress()).isTrue();
     }
+
     private Game getGame() {
         return launcher.getGame();
     }
