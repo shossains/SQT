@@ -9,6 +9,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -18,6 +21,8 @@ import static org.mockito.Mockito.verify;
  */
 public class SuspendSystemTest {
 
+    private Player player;
+    private Ghost ghost;
     private Launcher launcher;
 
     /**
@@ -26,7 +31,8 @@ public class SuspendSystemTest {
     @BeforeEach
     public void before() {
         launcher = new Launcher();
-
+        player = mock(Player.class);
+        ghost = mock(Ghost.class);
     }
 
     /**
@@ -39,7 +45,10 @@ public class SuspendSystemTest {
 
     @Test
     public void testSuspendGame() {
-
+        launcher.launch();
+        getGame().start();
+        getGame().stop();
+        assertThat(getGame().isInProgress()).isFalse();
     }
 
     /**
