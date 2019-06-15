@@ -56,10 +56,6 @@ public class SuspendSystemTest {
         getGame().start();
         assertThat(getGame().isInProgress()).isTrue();
     }
-
-
-
-
     private Game getGame() {
         return launcher.getGame();
     }
