@@ -26,7 +26,7 @@ public class SuspendSystemTest {
     @BeforeEach
     void setUp() {
         launcher = new Launcher();
-        launcher.withMapFile("/map.txt").launch();
+        launcher.withMapFile("/Scenario4.txt").launch();
     }
 
     /**
