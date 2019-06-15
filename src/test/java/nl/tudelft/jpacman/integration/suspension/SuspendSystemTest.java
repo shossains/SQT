@@ -5,7 +5,6 @@ import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Unit;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.npc.Ghost;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +38,7 @@ public class SuspendSystemTest {
     }
 
     /**
-     * Test how the ghosts and player behave after the game stops
+     * Test how the ghosts and player behave after the game stops.
      * @throws InterruptedException
      */
     @Test
