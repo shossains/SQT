@@ -45,7 +45,7 @@ public class PlayerMovementTest {
      *
      */
     @Test
-    public void TestClydeFarFromPacman() throws InterruptedException {
+    public void ScenarioOne() throws InterruptedException {
         Game game = launcher.getGame();
         Player player = game.getPlayers().get(0);
         Thread.sleep(2000);
@@ -53,10 +53,8 @@ public class PlayerMovementTest {
         // start cleanly.
         assertThat(game.isInProgress()).isFalse();
         game.start();
-        assertThat(game.isInProgress()).isTrue();
-        assertThat(player.getScore()).isZero();
 
-        game.move(player, Direction.EAST); //eat pellet and earn points
+         //eat pellet and earn points
         assertEquals(player.getScore(),10);
 
     }

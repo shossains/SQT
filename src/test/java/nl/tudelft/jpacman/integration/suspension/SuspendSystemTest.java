@@ -42,8 +42,8 @@ public class SuspendSystemTest {
      * Test how the ghosts and player behave after the game stops
      * @throws InterruptedException
      */
-    @Test //TODO Check for player SETDIRECTION behavior after 'game.stop'
-    public void testMovingGhost() throws InterruptedException {
+    @Test
+    public void ScenarioOne() throws InterruptedException {
         Game game = getGame();
 
         Player player = getGame().getPlayers().get(0);
@@ -78,7 +78,7 @@ public class SuspendSystemTest {
      * game and checks it is indeed in progress.
      */
     @Test
-    public void testRestartGame() {
+    public void ScenarioTwo() {
         launcher.launch();
         getGame().start();
         assertThat(getGame().isInProgress()).isTrue();
