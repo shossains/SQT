@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.integration.suspension;
 
 import nl.tudelft.jpacman.Launcher;
+import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Unit;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
@@ -44,17 +45,24 @@ public class SuspendSystemTest {
     @Test //TODO Check for player SETDIRECTION behavior after 'game.stop'
     public void testMovingGhost() throws InterruptedException {
         Game game = getGame();
-        List<Unit> ghostBefore = game.getLevel().getBoard().squareAt(6, 1).getOccupants(); //get ghostS start location
-        assertEquals(ghostBefore.get(0).getClass().toString(),"class nl.tudelft.jpacman.npc.ghost.Blinky"); //check if the square contains a ghost
+
+        Player player = getGame().getPlayers().get(0);
+        List<Unit> ghostBefore = game.getLevel().getBoard().squareAt(6, 1).getOccupants(); //get ghost start location
+
+        assertEquals(player.getScore(),0); //player should have 0 points to start with
+        assertEquals(ghostBefore.get(0).getClass().toString(),"class nl.tudelft.jpacman.npc.ghost.Blinky"); //check if the ghost square contains a ghost
 
         game.stop();
-        Thread.sleep(250);
+        Thread.sleep(200);
 
+        game.move(player, Direction.EAST);
         List<Unit> ghostAfter = game.getLevel().getBoard().squareAt(6, 1).getOccupants(); //get ghost start location
+
+        assertEquals(player.getScore(),0); //score should still be 0 since it shouldn't move
         assertEquals(ghostAfter.get(0).getClass().toString(), "class nl.tudelft.jpacman.npc.ghost.Blinky"); //ghost should still be there
 
         game.start();
-        Thread.sleep(160); //let the ghost move
+        Thread.sleep(200); //let the ghost move
 
         List<Unit> emptySquare = game.getLevel().getBoard().squareAt(6, 1).getOccupants(); //get ghostSquare
         assertEquals(0,emptySquare.size()); //ghost has left start location
