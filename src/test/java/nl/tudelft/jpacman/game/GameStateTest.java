@@ -16,6 +16,7 @@ import static  org.junit.jupiter.api.Assertions.assertFalse;
 public class GameStateTest {
     private Launcher launcher;
     private Player player;
+    private boolean progress;
 
 
     /**
@@ -46,7 +47,7 @@ public class GameStateTest {
     @Test
     void testStartButtonWithGameStarted() {
         launcher.getGame().start();
-        boolean progress = launcher.getGame().isInProgress();
+        progress = launcher.getGame().isInProgress();
         launcher.getGame().start();
         assertEquals(progress, launcher.getGame().isInProgress());
         assertTrue(progress);
@@ -62,7 +63,7 @@ public class GameStateTest {
         launcher.withMapFile("/SneakPathMap_2");
         launcher.launch();
         launcher.getGame().levelLost();
-        boolean progress = launcher.getGame().isInProgress();
+        progress = launcher.getGame().isInProgress();
         launcher.getGame().start();
         assertEquals(progress, launcher.getGame().isInProgress());
         assertFalse(progress);
@@ -78,7 +79,7 @@ public class GameStateTest {
         launcher.withMapFile("/SneakPathMap_2");
         launcher.launch();
         launcher.getGame().levelWon();
-        boolean progress = launcher.getGame().isInProgress();
+        progress = launcher.getGame().isInProgress();
         launcher.getGame().start();
         assertEquals(progress, launcher.getGame().isInProgress());
         assertFalse(progress);
@@ -86,49 +87,73 @@ public class GameStateTest {
 
     /**
      * Tests for when start button has been pressed and the game has been suspended.
-     * Expected:
+     * Expected: After game has been suspended, the start button should change the gameprogress from false to true.
      */
     @Test
     void testStartButtonWithGameSuspended() {
-        
+        launcher.getGame().start();
+        progress = launcher.getGame().isInProgress();
+        assertTrue(progress);
+        launcher.getGame().stop();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().start();
+        assertEquals(!progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     //Test cases for stop button
 
     /**
      * Tests for when stop button has been pressed and the game has started.
-     * Expected:
+     * Expected: After Gui has been launched the game shouldn't have started yet and stop button should change that.
      */
     @Test
     void testStopButtonWithGameStarted() {
-
+        launcher.launch();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().stop();
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     /**
      * Tests for when stop button has been pressed and the player has won.
-     * Expected:
+     * Expected: fter gane has been lost, the progress should stay false and not change after pressing stop button.
      */
     @Test
     void testStopButtonWithGameLost() {
-
+        launcher.getGame().levelLost();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().stop();
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     /**
      * Tests for when stop button has been pressed and the player has lost.
-     * Expected:
+     * Expected: After gane has been won, the progress should stay false and not change after pressing stop button.
      */
     @Test
     void testStopButtonWithGameWon() {
-
+        launcher.getGame().levelWon();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().stop();
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     /**
      * Tests for when stop button has been pressed and the game has been suspended.
-     * Expected:
+     * Expected: After game has been suspended the progress should go from true to false.
      */
     @Test
     void testStopButtonWithGameSuspended() {
-
+        launcher.getGame().start();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().stop();
+        assertEquals(progress, !launcher.getGame().isInProgress());
+        assertTrue(progress);
+        assertFalse(launcher.getGame().isInProgress());
     }
 
     //Test cases for last pellet eaten.
