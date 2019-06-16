@@ -7,9 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static  org.junit.jupiter.api.Assertions.assertTrue;
-import static  org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test class for testing the Game states.
@@ -215,37 +213,57 @@ public class GameStateTest {
 
     /**
      * Tests for when ghost has eaten Pacman and the game has started.
-     * Expected:
+     * Expected: After GUI has been launched, game should't have started and being eaten by a ghost shouldn't affect that.
      */
     @Test
     void testEatenByGhostWithGameStarted() {
-
-    }
-
-    /**
-     * Tests for when ghost has eaten Pacman and the player has won.
-     * Expected:
-     */
-    @Test
-    void testEatenByGhostWithGameLost() {
-
+        launcher.launch();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().move(player, Direction.EAST);
+        launcher.getGame().move(player, Direction.EAST);
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     /**
      * Tests for when ghost has eaten Pacman and the player has lost.
-     * Expected:
+     * Expected: After game has been lost, eaten by a ghost shouldn't affect the progress.
+     */
+    @Test
+    void testEatenByGhostWithGameLost() {
+        launcher.getGame().levelLost();
+        progress =  launcher.getGame().isInProgress();
+        launcher.getGame().move(player, Direction.EAST);
+        launcher.getGame().move(player, Direction.EAST);
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
+    }
+
+    /**
+     * Tests for when ghost has eaten Pacman and the player has won.
+     * Expected: After game has been won, eaten by a ghost shouldn't affect the progress.
      */
     @Test
     void testEatenByGhostWithGameWon() {
-
+        launcher.getGame().levelWon();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().move(player, Direction.EAST);
+        launcher.getGame().move(player, Direction.EAST);
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     /**
      * Tests for when ghost has eaten Pacman and the game has been suspended.
-     * Expected:
+     * Expected: After game has been suspended, eaten by a ghost shouldn't affect the progress.
      */
     @Test
     void testEatenByGhostWithGameSuspended() {
-
+        launcher.getGame().stop();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().move(player, Direction.EAST);
+        launcher.getGame().move(player, Direction.EAST);
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 }
