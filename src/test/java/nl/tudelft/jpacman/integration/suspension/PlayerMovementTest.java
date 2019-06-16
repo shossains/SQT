@@ -142,22 +142,25 @@ public class PlayerMovementTest {
      */
     @Test
     public void scenarioFive() {
-        launcher.withMapFile("/Scenario24.txt").launch();
+        launcher.withMapFile("/Scenario25.txt").launch();
         Game game = launcher.getGame();
         Player player = game.getPlayers().get(0);
         game.start();
 
         assertThat(game.isInProgress()).isTrue(); //has game started?
+        assertEquals(1,game.getLevel().remainingPellets()); //1 pellet left
 
-        game.move(player,Direction.EAST); //move to the ghost
+        game.move(player,Direction.EAST); //move to the pellet
 
         assertThat(game.isInProgress()).isFalse(); //game should be ended
+        assertEquals(10,player.getScore()); //score should be 10
     }
+
 
     @Test
     public void loop() {
         for (int i = 0; i < 100; i++) {
-            scenarioFour();
+            scenarioFive();
         }
     }
 }
