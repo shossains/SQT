@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.game;
 
 import nl.tudelft.jpacman.Launcher;
+import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.level.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -160,38 +161,54 @@ public class GameStateTest {
 
     /**
      * Tests for when last pellet has been consumed and the game has started.
-     * Expected:
+     * Expected: After GUI has been launched, game shouldn't have started and eating the last pellet shouldn't affect that.
      */
     @Test
     void testLastPelletWithGameStarted() {
-
+        launcher.launch();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().move(player, Direction.WEST);
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     /**
      * Tests for when last pellet has been consumed and the player has won.
-     * Expected:
+     * Expected: After the player lost, eating the last pellet shouldn't affect the progress.
      */
     @Test
     void testLastPelletWithGameLost() {
-
+        launcher.getGame().levelLost();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().move(launcher.getGame().getPlayers().get(0), Direction.WEST);
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     /**
      * Tests for when last pellet has been consumed and the player has lost.
-     * Expected:
+     * Expected: After eating the last pellet, the progress should change from true to false.
      */
     @Test
     void testLastPelletWithGameWon() {
-
+       launcher.getGame().start();
+       progress = launcher.getGame().isInProgress();
+       launcher.getGame().move(launcher.getGame().getPlayers().get(0), Direction.WEST);
+       assertEquals(progress, !launcher.getGame().isInProgress());
+       assertTrue(progress);
     }
 
     /**
      * Tests for when last pellet has been consumed and the game has been suspended.
-     * Expected:
+     * Expected: After game has been suspended, eating the last pellet shouldn't affect the progress.
      */
     @Test
     void testLastPelletWithGameSuspended() {
-
+        launcher.getGame().stop();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().move(player, Direction.WEST);
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     //Test cases for when eaten by ghost.
