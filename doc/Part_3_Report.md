@@ -38,7 +38,7 @@ See game.GameStateTest.java
     
     Scenario S5.1: Go to next level
      Given I won on (the) previous level(s),
-    and there are more than 0 levels left;
+    and there are 3 levels or less left;
     Start the next level.
     
     Scenario S5.2: End the game
