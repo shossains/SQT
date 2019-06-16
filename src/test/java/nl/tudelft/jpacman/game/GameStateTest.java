@@ -7,8 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static  org.junit.jupiter.api.Assertions.assertTrue;
+import static  org.junit.jupiter.api.Assertions.assertFalse;
 
+/**
+ * Test class for testing the Game states.
+ */
 public class GameStateTest {
     private Launcher launcher;
     private Player player;
@@ -36,11 +40,11 @@ public class GameStateTest {
 
     //Test cases for start button
     /**
-     * Tests for when start button has been pressed and the GUI has been launched.
+     * Tests for when start button has been pressed and the game has started.
      * Expected: Progress should be the same after start has been pressed twice and progress should be true.
      */
     @Test
-    void testStartButtonWithGUILaunched() {
+    void testStartButtonWithGameStarted() {
         launcher.getGame().start();
         boolean progress = launcher.getGame().isInProgress();
         launcher.getGame().start();
@@ -49,50 +53,51 @@ public class GameStateTest {
     }
 
     /**
-     * Tests for when start button has been pressed and the game has started.
-     * Expected:
-     */
-    @Test
-    void testStartButtonWithGameStarted() {
-
-    }
-
-    /**
      * Tests for when start button has been pressed and the player has won.
+     * Expected:  Progress after game has been lost should stay false after the start button has been pressed again.
      */
     @Test
     void testStartButtonWithGameLost() {
-
+        launcher = new Launcher();
+        launcher.withMapFile("/SneakPathMap_2");
+        launcher.launch();
+        launcher.getGame().levelLost();
+        boolean progress = launcher.getGame().isInProgress();
+        launcher.getGame().start();
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     /**
      * Tests for when start button has been pressed and the player has lost.
+     * Expected: Progress after game has been won should stay false after the start button has been pressed again.
      */
     @Test
     void testStartButtonWithGameWon() {
-
+        launcher = new Launcher();
+        launcher.withMapFile("/SneakPathMap_2");
+        launcher.launch();
+        launcher.getGame().levelWon();
+        boolean progress = launcher.getGame().isInProgress();
+        launcher.getGame().start();
+        assertEquals(progress, launcher.getGame().isInProgress());
+        assertFalse(progress);
     }
 
     /**
      * Tests for when start button has been pressed and the game has been suspended.
+     * Expected:
      */
     @Test
     void testStartButtonWithGameSuspended() {
-
+        
     }
 
     //Test cases for stop button
 
     /**
-     * Tests for when stop button has been pressed and the GUI has been launched
-     */
-    @Test
-    void testStopButtonWithGUILaunched() {
-
-    }
-
-    /**
      * Tests for when stop button has been pressed and the game has started.
+     * Expected:
      */
     @Test
     void testStopButtonWithGameStarted() {
@@ -101,6 +106,7 @@ public class GameStateTest {
 
     /**
      * Tests for when stop button has been pressed and the player has won.
+     * Expected:
      */
     @Test
     void testStopButtonWithGameLost() {
@@ -109,6 +115,7 @@ public class GameStateTest {
 
     /**
      * Tests for when stop button has been pressed and the player has lost.
+     * Expected:
      */
     @Test
     void testStopButtonWithGameWon() {
@@ -117,6 +124,7 @@ public class GameStateTest {
 
     /**
      * Tests for when stop button has been pressed and the game has been suspended.
+     * Expected:
      */
     @Test
     void testStopButtonWithGameSuspended() {
@@ -126,15 +134,8 @@ public class GameStateTest {
     //Test cases for last pellet eaten.
 
     /**
-     * Tests for when last pellet has been consumed and the GUI has been launched
-     */
-    @Test
-    void testLastPelletWithGUILaunched() {
-
-    }
-
-    /**
      * Tests for when last pellet has been consumed and the game has started.
+     * Expected:
      */
     @Test
     void testLastPelletWithGameStarted() {
@@ -143,6 +144,7 @@ public class GameStateTest {
 
     /**
      * Tests for when last pellet has been consumed and the player has won.
+     * Expected:
      */
     @Test
     void testLastPelletWithGameLost() {
@@ -151,6 +153,7 @@ public class GameStateTest {
 
     /**
      * Tests for when last pellet has been consumed and the player has lost.
+     * Expected:
      */
     @Test
     void testLastPelletWithGameWon() {
@@ -159,6 +162,7 @@ public class GameStateTest {
 
     /**
      * Tests for when last pellet has been consumed and the game has been suspended.
+     * Expected:
      */
     @Test
     void testLastPelletWithGameSuspended() {
@@ -168,15 +172,8 @@ public class GameStateTest {
     //Test cases for when eaten by ghost.
 
     /**
-     * Tests for when ghost has eaten Pacman and the GUI has been launched
-     */
-    @Test
-    void testEatenByGhostWithGUILaunched() {
-
-    }
-
-    /**
      * Tests for when ghost has eaten Pacman and the game has started.
+     * Expected:
      */
     @Test
     void testEatenByGhostWithGameStarted() {
@@ -185,6 +182,7 @@ public class GameStateTest {
 
     /**
      * Tests for when ghost has eaten Pacman and the player has won.
+     * Expected:
      */
     @Test
     void testEatenByGhostWithGameLost() {
@@ -193,6 +191,7 @@ public class GameStateTest {
 
     /**
      * Tests for when ghost has eaten Pacman and the player has lost.
+     * Expected:
      */
     @Test
     void testEatenByGhostWithGameWon() {
@@ -201,6 +200,7 @@ public class GameStateTest {
 
     /**
      * Tests for when ghost has eaten Pacman and the game has been suspended.
+     * Expected:
      */
     @Test
     void testEatenByGhostWithGameSuspended() {

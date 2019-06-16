@@ -28,6 +28,7 @@ See Document files.Part_3_Report.docx
 See Document files.Part_3_Report.docx
 
 ### Exercise 9
+See game.GameStateTest.java
 
 ### Exercise 10
 
