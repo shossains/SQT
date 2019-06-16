@@ -32,7 +32,22 @@ See game.GameStateTest.java
 
 ### Exercise 10
 
+   #### Story 5: Multi-level experience
+    As a player, if I win a level, 
+    I want to play 3 more levels before ending the game.
+    
+    Scenario S5.1: Go to next level
+     Given I won on (the) previous level(s),
+    and there are more than 0 levels left;
+    Start the next level.
+    
+    Scenario S5.2: End the game
+     Given I won on (the) previous level(s),
+    and there are 0 levels left;
+    Game has been won and player wins.
+    
 ### Exercise 11
+
 
 ### Exercise 12 
  
