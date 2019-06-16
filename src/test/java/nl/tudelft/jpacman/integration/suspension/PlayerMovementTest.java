@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -27,7 +28,6 @@ public class PlayerMovementTest {
     @BeforeEach
     void setUp() {
         launcher = new Launcher();
-        launcher.withMapFile("/Scenario2.txt").launch();
     }
 
     /**
@@ -44,6 +44,7 @@ public class PlayerMovementTest {
     @SuppressWarnings("PMD.JUnitTestContainsTooManyAsserts")
     @Test
     public void scenarioOne() {
+        launcher.withMapFile("/Scenario2.txt").launch();
         Game game = launcher.getGame();
 
         Player player = game.getPlayers().get(0);
@@ -71,6 +72,7 @@ public class PlayerMovementTest {
      */
     @Test
     public void scenarioTwo() {
+        launcher.withMapFile("/Scenario2.txt").launch();
         Game game = launcher.getGame();
         game.start();
 
@@ -94,6 +96,7 @@ public class PlayerMovementTest {
      */
     @Test
     public void scenarioThree() {
+        launcher.withMapFile("/Scenario2.txt").launch();
         Game game = launcher.getGame();
         game.start();
 
@@ -115,5 +118,46 @@ public class PlayerMovementTest {
         assertEquals(0, wallSquare2.getOccupants().size()); //still no occupants at wall
         assertEquals("class nl.tudelft.jpacman.level.Player",
             playerSquare2.get(0).getClass().toString());
+    }
+
+    /**
+     * Check if game ends if pacman dies
+     */
+    @Test
+    public void scenarioFour() {
+        launcher.withMapFile("/Scenario24.txt").launch();
+        Game game = launcher.getGame();
+        Player player = game.getPlayers().get(0);
+        game.start();
+
+        assertThat(game.isInProgress()).isTrue(); //has game started?
+
+        game.move(player,Direction.EAST); //move to the ghost
+
+        assertThat(game.isInProgress()).isFalse(); //game should be ended
+    }
+
+    /**
+     * Check if game ends if pacman dies
+     */
+    @Test
+    public void scenarioFive() {
+        launcher.withMapFile("/Scenario24.txt").launch();
+        Game game = launcher.getGame();
+        Player player = game.getPlayers().get(0);
+        game.start();
+
+        assertThat(game.isInProgress()).isTrue(); //has game started?
+
+        game.move(player,Direction.EAST); //move to the ghost
+
+        assertThat(game.isInProgress()).isFalse(); //game should be ended
+    }
+
+    @Test
+    public void loop() {
+        for (int i = 0; i < 100; i++) {
+            scenarioFour();
+        }
     }
 }
