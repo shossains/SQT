@@ -1,6 +1,5 @@
 # Report Part 3
 
-
 ### Exercise 1
 See integration.suspension.SuspendSysemTest.java
 
@@ -8,9 +7,12 @@ See integration.suspension.SuspendSysemTest.java
 See integration.suspension.PlayerMovementTest.java
 
 ### Exercise 3
-
+Scenario 2.4 and 2.5 are harder to test with the default map because to make sure the player is next
+a ghost requires a form of logic to be implemented. These scenarios require the game to be in a
+specific state which is hard to achieve compared to the previous scenarios
 
 ### Exercise 4
+See integration.suspension.PlayerMovementTest.java
 
 ### Exercise 5
 
