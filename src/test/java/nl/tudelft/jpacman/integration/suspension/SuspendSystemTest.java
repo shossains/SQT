@@ -43,6 +43,7 @@ public class SuspendSystemTest {
      * @throws InterruptedException If thread sleepd to long.
      */
     @Test
+    @SuppressWarnings("PMD.JUnitTestContainsTooManyAsserts")
     public void scenarioOne() throws InterruptedException {
         Game game = getGame();
         Player player = getGame().getPlayers().get(0);

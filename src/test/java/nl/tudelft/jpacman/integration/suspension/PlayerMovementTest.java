@@ -41,6 +41,7 @@ public class PlayerMovementTest {
     /**
      *Check if pellet disappears and score increases.
      */
+    @SuppressWarnings("PMD.JUnitTestContainsTooManyAsserts")
     @Test
     public void scenarioOne() {
         Game game = launcher.getGame();
@@ -97,7 +98,7 @@ public class PlayerMovementTest {
         game.start();
 
         Player player = game.getPlayers().get(0);
-        Square wallSquare = game.getLevel().getBoard().squareAt(2, 0);//get wall square
+        Square wallSquare = game.getLevel().getBoard().squareAt(2, 0); //get wall square
         List<Unit> playerSquare = game.getLevel().getBoard().squareAt(2, 1).getOccupants();
 
         assertEquals(0, wallSquare.getOccupants().size()); //wall should not have any occupants
@@ -108,11 +109,11 @@ public class PlayerMovementTest {
 
         game.getLevel().move(player, Direction.NORTH); //move towards a wall
 
-        Square wallSquare2 = game.getLevel().getBoard().squareAt(2, 0);//get wall square
+        Square wallSquare2 = game.getLevel().getBoard().squareAt(2, 0); //get wall square
         List<Unit> playerSquare2 = game.getLevel().getBoard().squareAt(2, 1).getOccupants();
 
         assertEquals(0, wallSquare2.getOccupants().size()); //still no occupants at wall
         assertEquals("class nl.tudelft.jpacman.level.Player",
-            playerSquare.get(0).getClass().toString());
+            playerSquare2.get(0).getClass().toString());
     }
 }
