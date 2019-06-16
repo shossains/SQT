@@ -19,11 +19,15 @@ Since the ghost is an AI and has it's own movement system it is very hard to con
 movements to get it in the necessary state.
 
 ### Exercise 6
-
+See Document files.Part_3_Report.docx
 
 ### Exercise 7
+See Document files.Part_3_Report.docx
 
 ### Exercise 8
+See Document files.Part_3_Report.docx
+
+### Exercise 9
 
 ### Exercise 10
 
