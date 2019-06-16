@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * An example test class that conducts integration tests.
  */
+@SuppressWarnings("checkstyle:MagicNumber")
 public class PlayerMovementTest {
     private Launcher launcher;
 
