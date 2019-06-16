@@ -152,6 +152,7 @@ public class PlayerMovementTest {
 
         game.move(player,Direction.EAST); //move to the pellet
 
+        ssertEquals(0,game.getLevel().remainingPellets()); //0 pellet left
         assertThat(game.isInProgress()).isFalse(); //game should be ended
         assertEquals(10,player.getScore()); //score should be 10
     }
