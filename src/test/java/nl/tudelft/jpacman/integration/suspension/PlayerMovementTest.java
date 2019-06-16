@@ -121,7 +121,7 @@ public class PlayerMovementTest {
     }
 
     /**
-     * Check if game ends if pacman dies
+     * Check if game ends if pacman dies.
      */
     @Test
     public void scenarioFour() {
@@ -132,13 +132,13 @@ public class PlayerMovementTest {
 
         assertThat(game.isInProgress()).isTrue(); //has game started?
 
-        game.move(player,Direction.EAST); //move to the ghost
+        game.move(player, Direction.EAST); //move to the ghost
 
         assertThat(game.isInProgress()).isFalse(); //game should be ended
     }
 
     /**
-     * Check if game ends if pacman dies
+     * Check if game ends if pacman dies.
      */
     @Test
     public void scenarioFive() {
@@ -148,20 +148,12 @@ public class PlayerMovementTest {
         game.start();
 
         assertThat(game.isInProgress()).isTrue(); //has game started?
-        assertEquals(1,game.getLevel().remainingPellets()); //1 pellet left
+        assertEquals(1, game.getLevel().remainingPellets()); //1 pellet left
 
-        game.move(player,Direction.EAST); //move to the pellet
+        game.move(player, Direction.EAST); //move to the pellet
 
-        assertEquals(0,game.getLevel().remainingPellets()); //0 pellet left
+        assertEquals(0, game.getLevel().remainingPellets()); //0 pellet left
         assertThat(game.isInProgress()).isFalse(); //game should be ended
-        assertEquals(10,player.getScore()); //score should be 10
-    }
-
-
-    @Test
-    public void loop() {
-        for (int i = 0; i < 100; i++) {
-            scenarioFive();
-        }
+        assertEquals(10, player.getScore()); //score should be 10
     }
 }

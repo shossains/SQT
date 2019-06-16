@@ -15,6 +15,8 @@ specific state which is hard to achieve compared to the previous scenarios
 See integration.suspension.PlayerMovementTest.java
 
 ### Exercise 5
+Since the ghost is an AI and has it's own movement it is very hard to control the ghost's movements
+itself. A ghosts movement is also not consistent, so predicting it's next move
 
 ### Exercise 6
 
