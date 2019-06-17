@@ -7,7 +7,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Test class for testing the Game states.
@@ -41,7 +43,8 @@ public class GameStateTest {
     //Test cases for start button
     /**
      * Tests for when start button has been pressed and the game has started.
-     * Expected: Progress should be the same after start has been pressed twice and progress should be true.
+     * Expected: Progress should be the same after start has been pressed twice
+     * and progress should be true.
      */
     @Test
     void testStartButtonWithGameStarted() {
@@ -54,7 +57,8 @@ public class GameStateTest {
 
     /**
      * Tests for when start button has been pressed and the player has won.
-     * Expected:  Progress after game has been lost should stay false after the start button has been pressed again.
+     * Expected:  Progress after game has been lost should stay false
+     * after the start button has been pressed again.
      */
     @Test
     void testStartButtonWithGameLost() {
@@ -70,7 +74,8 @@ public class GameStateTest {
 
     /**
      * Tests for when start button has been pressed and the player has lost.
-     * Expected: Progress after game has been won should stay false after the start button has been pressed again.
+     * Expected: Progress after game has been won should stay false
+     * after the start button has been pressed again.
      */
     @Test
     void testStartButtonWithGameWon() {
@@ -86,7 +91,8 @@ public class GameStateTest {
 
     /**
      * Tests for when start button has been pressed and the game has been suspended.
-     * Expected: After game has been suspended, the start button should change the gameprogress from false to true.
+     * Expected: After game has been suspended, the start button should
+     * change the gameprogress from false to true.
      */
     @Test
     void testStartButtonWithGameSuspended() {
@@ -104,7 +110,8 @@ public class GameStateTest {
 
     /**
      * Tests for when stop button has been pressed and the game has started.
-     * Expected: After Gui has been launched the game shouldn't have started yet and stop button should change that.
+     * Expected: After Gui has been launched the game shouldn't have started yet
+     * and stop button should change that.
      */
     @Test
     void testStopButtonWithGameStarted() {
@@ -117,7 +124,8 @@ public class GameStateTest {
 
     /**
      * Tests for when stop button has been pressed and the player has won.
-     * Expected: fter gane has been lost, the progress should stay false and not change after pressing stop button.
+     * Expected: fter gane has been lost, the progress should stay false
+     * and not change after pressing stop button.
      */
     @Test
     void testStopButtonWithGameLost() {
@@ -130,7 +138,8 @@ public class GameStateTest {
 
     /**
      * Tests for when stop button has been pressed and the player has lost.
-     * Expected: After gane has been won, the progress should stay false and not change after pressing stop button.
+     * Expected: After gane has been won, the progress should stay false
+     * and not change after pressing stop button.
      */
     @Test
     void testStopButtonWithGameWon() {
@@ -159,7 +168,8 @@ public class GameStateTest {
 
     /**
      * Tests for when last pellet has been consumed and the game has started.
-     * Expected: After GUI has been launched, game shouldn't have started and eating the last pellet shouldn't affect that.
+     * Expected: After GUI has been launched, game shouldn't have started
+     * and eating the last pellet shouldn't affect that.
      */
     @Test
     void testLastPelletWithGameStarted() {
@@ -189,16 +199,17 @@ public class GameStateTest {
      */
     @Test
     void testLastPelletWithGameWon() {
-       launcher.getGame().start();
-       progress = launcher.getGame().isInProgress();
-       launcher.getGame().move(launcher.getGame().getPlayers().get(0), Direction.WEST);
-       assertEquals(progress, !launcher.getGame().isInProgress());
-       assertTrue(progress);
+        launcher.getGame().start();
+        progress = launcher.getGame().isInProgress();
+        launcher.getGame().move(launcher.getGame().getPlayers().get(0), Direction.WEST);
+        assertEquals(progress, !launcher.getGame().isInProgress());
+        assertTrue(progress);
     }
 
     /**
      * Tests for when last pellet has been consumed and the game has been suspended.
-     * Expected: After game has been suspended, eating the last pellet shouldn't affect the progress.
+     * Expected: After game has been suspended, eating the last pellet
+     * shouldn't affect the progress.
      */
     @Test
     void testLastPelletWithGameSuspended() {
@@ -213,7 +224,8 @@ public class GameStateTest {
 
     /**
      * Tests for when ghost has eaten Pacman and the game has started.
-     * Expected: After GUI has been launched, game should't have started and being eaten by a ghost shouldn't affect that.
+     * Expected: After GUI has been launched, game should't have started
+     * and being eaten by a ghost shouldn't affect that.
      */
     @Test
     void testEatenByGhostWithGameStarted() {
