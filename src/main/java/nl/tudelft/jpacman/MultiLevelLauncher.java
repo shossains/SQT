@@ -22,7 +22,13 @@ public class MultiLevelLauncher extends Launcher {
     private MultiLevelGame multiGame;
     private static String[] mapStrings = {"/board.txt", "/boardTest.txt", "/boardTest.txt", "/board.txt"};
 
+    private PacManUI pacManUI;
+    private MultiLevelGame game;
 
+    /**
+     * @return The game object this launcher will start when {@link #launch()}
+     *         is called.
+     */
     @Override
     public MultiLevelGame getGame() {
         return multiGame;
@@ -59,9 +65,16 @@ public class MultiLevelLauncher extends Launcher {
         }
     }
 
-    public static void main(String[] args) {
+    /**
+     * Main execution method for the Launcher.
+     *
+     * @param args
+     *            The command line arguments - which are ignored.
+     * @throws IOException
+     *             When a resource could not be read.
+     */
+    public static void main(String[] args) throws IOException {
         new MultiLevelLauncher().launch();
     }
-
 
 }

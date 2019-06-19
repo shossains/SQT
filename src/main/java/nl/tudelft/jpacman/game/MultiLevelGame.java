@@ -11,6 +11,7 @@ import java.util.List;
  * A game with one player and multiple levels.
  */
 public class MultiLevelGame extends Game {
+    private MultiLevelGame multiGame;
 
     /**
      * The player of this game.
@@ -23,6 +24,7 @@ public class MultiLevelGame extends Game {
     private List<Level> levels;
 
     /**
+     * Creates a new game.
      *
      * @param player  The player.
      * @param levels List of levels.

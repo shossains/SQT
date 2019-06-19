@@ -194,7 +194,7 @@ public class Launcher {
      *
      * Precondition: The game was launched first.
      */
-    public void dispose() {
+    public void dis pose() {
         assert pacManUI != null;
         pacManUI.dispose();
     }
