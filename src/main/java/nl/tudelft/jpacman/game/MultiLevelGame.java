@@ -58,7 +58,6 @@ public class MultiLevelGame extends Game {
         if (currentLevel < levels.size() - 1) {
             currentLevel++;
             levels.get(currentLevel).registerPlayer(player);
-            levels.get(currentLevel).start();
         } else {
             JOptionPane.showMessageDialog(null, "You've won");
             stop();
