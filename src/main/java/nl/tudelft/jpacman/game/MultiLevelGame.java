@@ -1,6 +1,7 @@
 package nl.tudelft.jpacman.game;
 
 import com.google.common.collect.ImmutableList;
+import nl.tudelft.jpacman.MultiLevelLauncher;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
@@ -22,6 +23,7 @@ public class MultiLevelGame extends Game {
      * List of levels of this game.
      */
     private List<Level> levels;
+    private int currentLevel = 0;
 
     /**
      * Creates a new game.
@@ -32,13 +34,17 @@ public class MultiLevelGame extends Game {
      */
     protected MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
+        assert player != null;
+        assert levels != null;
+
         this.player = player;
         this.levels = levels;
+        this.levels.get(currentLevel).registerPlayer(player);
     }
 
     @Override
     public Level getLevel() {
-        return levels.get(0);
+        return levels.get(currentLevel);
     }
 
     @Override
@@ -46,14 +52,20 @@ public class MultiLevelGame extends Game {
         return ImmutableList.of(player);
     }
 
+    public void increaseLevel() {
+        if (currentLevel < levels.size()-1) {
+            currentLevel++;
+            levels.get(currentLevel).registerPlayer(player);
+            levels.get(currentLevel).start();
+        } else {
+            System.out.println("only print after last level");
+        }
+
+    }
+
     @Override
     public void levelWon() {
-        if (levels.isEmpty()) {
-            System.out.println("MultiLevelGame.java line 50");
-            stop();
-        } else {
-            System.out.println("MultilevelGame.java line 53 \n");
-            getLevel().start();
-        }
+        stop();
+        increaseLevel();
     }
 }
