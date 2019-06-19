@@ -32,7 +32,7 @@ public class MultiLevelLauncher {
 
     private static final PacManSprites SPRITE_STORE = new PacManSprites();
 
-    List<String> maps = Arrays.asList("/simplemap.txt", "/simplemap.txt", "/simplemap.txt");
+    List<String> maps = Arrays.asList("/simplemap.txt", "/board.txt", "/simplemap.txt");
     public int currentLevel = 0;
     private String levelMap;
 
@@ -213,6 +213,6 @@ public class MultiLevelLauncher {
      *             When a resource could not be read.
      */
     public static void main(String[] args) throws IOException {
-        new Launcher().launch();
+        new MultiLevelLauncher().launch();
     }
 }
