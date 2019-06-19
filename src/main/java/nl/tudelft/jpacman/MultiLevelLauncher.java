@@ -2,13 +2,13 @@ package nl.tudelft.jpacman;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.game.GameFactory;
+import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.LevelFactory;
 import nl.tudelft.jpacman.level.MapParser;
@@ -32,33 +32,32 @@ public class MultiLevelLauncher {
 
     private static final PacManSprites SPRITE_STORE = new PacManSprites();
 
-    List<String> maps = Arrays.asList("/simplemap.txt", "/board.txt", "/simplemap.txt");
-    public int currentLevel = 0;
-    private String levelMap;
+    public static final String DEFAULT_MAP = "/board.txt";
+    private String levelMap = DEFAULT_MAP;
 
     private PacManUI pacManUI;
-    private Game game;
+    private MultiLevelGame game;
 
-    /**
-     * Fetch the next map to play.
-     * @return the next map to play on
-     */
-    public String nextMap() {
-        if (currentLevel < maps.size()) {
-            levelMap = maps.get(currentLevel);
-            currentLevel++;
-        } else {
-            System.exit(0);
-        }
-
-        return levelMap;
-    }
+//    /**
+//     * Fetch the next map to play.
+//     * @return the next map to play on
+//     */
+//    public String nextMap() {
+//        if (currentLevel < maps.size()) {
+//            levelMap = maps.get(currentLevel);
+//            currentLevel++;
+//        } else {
+//            System.exit(0);
+//        }
+//
+//        return levelMap;
+//    }
 
     /**
      * @return The game object this launcher will start when {@link #launch()}
      *         is called.
      */
-    public Game getGame() {
+    public MultiLevelGame getGame() {
         return game;
     }
 
@@ -68,7 +67,19 @@ public class MultiLevelLauncher {
      * @return The name of the map file.
      */
     protected String getLevelMap() {
-        return nextMap();
+        return levelMap;
+    }
+
+    /**
+     * Set the name of the file containing this level's map.
+     *
+     * @param fileName
+     *            Map to be used.
+     * @return Level corresponding to the given map.
+     */
+    public MultiLevelLauncher withMapFile(String fileName) {
+        levelMap = fileName;
+        return this;
     }
 
     /**
@@ -76,10 +87,10 @@ public class MultiLevelLauncher {
      *
      * @return a new Game.
      */
-    public Game makeGame() {
+    public MultiLevelGame makeGame() {
         GameFactory gf = getGameFactory();
         Level level = makeLevel();
-        game = gf.createSinglePlayerGame(level, loadPointCalculator());
+        MultiLevelGame game = gf.createSinglePlayerGame(level, loadPointCalculator());
         return game;
     }
 

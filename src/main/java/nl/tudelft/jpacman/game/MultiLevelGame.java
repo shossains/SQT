@@ -6,22 +6,11 @@ import nl.tudelft.jpacman.points.PointCalculator;
 
 import java.util.List;
 
-/**
- *
- */
 public class MultiLevelGame extends Game {
+    private MultiLevelGame multiGame;
 
     /**
-     * The player of this game.
-     */
-    private Player player;
-
-    /**
-     * The level of this game.
-     */
-    private Level level;
-
-    /**
+     * Creates a new game.
      *
      * @param pointCalculator The way to calculate points upon collisions.
      */
@@ -30,12 +19,17 @@ public class MultiLevelGame extends Game {
     }
 
     @Override
-    public Level getLevel() {
-        return level;
+    public List<Player> getPlayers() {
+        return null;
     }
 
     @Override
-    public List<Player> getPlayers() {
+    public Level getLevel() {
         return null;
+    }
+
+    @Override
+    public MultiLevelGame getGame() {
+        return multiGame;
     }
 }
