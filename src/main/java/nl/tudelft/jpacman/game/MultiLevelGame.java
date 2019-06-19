@@ -1,35 +1,72 @@
 package nl.tudelft.jpacman.game;
 
+import com.google.common.collect.ImmutableList;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 
 import java.util.List;
 
+/**
+ * A game with one player and multiple levels.
+ */
 public class MultiLevelGame extends Game {
-    private MultiLevelGame multiGame;
+
+    /**
+     * The player of this game.
+     */
+    private Player player;
+
+    /**
+     * List of levels of this game.
+     */
+    private List<Level> levels;
+    private int currentLevel = 0;
 
     /**
      * Creates a new game.
      *
+     * @param player  The player.
+     * @param levels List of levels.
      * @param pointCalculator The way to calculate points upon collisions.
      */
-    protected MultiLevelGame(PointCalculator pointCalculator) {
+    protected MultiLevelGame(Player player, List<Level> levels, PointCalculator pointCalculator) {
         super(pointCalculator);
-    }
+        assert player != null;
+        assert levels != null;
 
-    @Override
-    public List<Player> getPlayers() {
-        return null;
+        this.player = player;
+        this.levels = levels;
+        this.levels.get(currentLevel).registerPlayer(player);
     }
 
     @Override
     public Level getLevel() {
-        return null;
+        return levels.get(currentLevel);
     }
 
     @Override
-    public MultiLevelGame getGame() {
-        return multiGame;
+    public List<Player> getPlayers() {
+        return ImmutableList.of(player);
+    }
+
+    /**
+     * If level is won, go to next level.
+     */
+    public void increaseLevel() {
+        if (currentLevel < levels.size() - 1) {
+            currentLevel++;
+            levels.get(currentLevel).registerPlayer(player);
+            levels.get(currentLevel).start();
+        } else {
+            stop();
+        }
+
+    }
+
+    @Override
+    public void levelWon() {
+        stop();
+        increaseLevel();
     }
 }
