@@ -2,6 +2,7 @@ package nl.tudelft.jpacman;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import nl.tudelft.jpacman.board.BoardFactory;
@@ -24,18 +25,34 @@ import nl.tudelft.jpacman.ui.PacManUiBuilder;
 /**
  * Creates and launches the JPacMan UI.
  *
- * @author Jeroen Roosen
+ * @author Shaan Hossain
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public class MultiLevelLauncher {
 
     private static final PacManSprites SPRITE_STORE = new PacManSprites();
 
-    public static final String DEFAULT_MAP = "/board.txt";
-    private String levelMap = DEFAULT_MAP;
+    List<String> maps = Arrays.asList("/simplemap.txt", "/simplemap.txt", "/simplemap.txt");
+    public int currentLevel = 0;
+    private String levelMap;
 
     private PacManUI pacManUI;
     private Game game;
+
+    /**
+     * Fetch the next map to play.
+     * @return the next map to play on
+     */
+    public String nextMap() {
+        if (currentLevel < maps.size()) {
+            levelMap = maps.get(currentLevel);
+            currentLevel++;
+        } else {
+            System.exit(0);
+        }
+
+        return levelMap;
+    }
 
     /**
      * @return The game object this launcher will start when {@link #launch()}
@@ -51,19 +68,7 @@ public class MultiLevelLauncher {
      * @return The name of the map file.
      */
     protected String getLevelMap() {
-        return levelMap;
-    }
-
-    /**
-     * Set the name of the file containing this level's map.
-     *
-     * @param fileName
-     *            Map to be used.
-     * @return Level corresponding to the given map.
-     */
-    public Launcher withMapFile(String fileName) {
-        levelMap = fileName;
-        return this;
+        return nextMap();
     }
 
     /**
