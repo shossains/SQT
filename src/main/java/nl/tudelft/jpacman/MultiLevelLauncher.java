@@ -5,7 +5,6 @@ import nl.tudelft.jpacman.game.MultiLevelGame;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.points.PointCalculatorLoader;
-import nl.tudelft.jpacman.ui.PacManUI;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,8 +48,8 @@ public class MultiLevelLauncher extends Launcher {
     public List<Level> makeLevels() {
         try {
             List<Level> levels = new ArrayList<>();
-            for (int i = 0; i < mapStrings.length; i++) {
-                Level level = getMapParser().parseMap(mapStrings[i]);
+            for (String mapString : mapStrings) {
+                Level level = getMapParser().parseMap(mapString);
                 levels.add(level);
             }
             return levels;

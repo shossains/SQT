@@ -1,7 +1,6 @@
 package nl.tudelft.jpacman.game;
 
 import com.google.common.collect.ImmutableList;
-import nl.tudelft.jpacman.MultiLevelLauncher;
 import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
@@ -12,7 +11,6 @@ import java.util.List;
  * A game with one player and multiple levels.
  */
 public class MultiLevelGame extends Game {
-    private MultiLevelGame multiGame;
 
     /**
      * The player of this game.
@@ -52,13 +50,16 @@ public class MultiLevelGame extends Game {
         return ImmutableList.of(player);
     }
 
+    /**
+     * If level is won, go to next level.
+     */
     public void increaseLevel() {
-        if (currentLevel < levels.size()-1) {
+        if (currentLevel < levels.size() - 1) {
             currentLevel++;
             levels.get(currentLevel).registerPlayer(player);
             levels.get(currentLevel).start();
         } else {
-            System.out.println("only print after last level");
+            stop();
         }
 
     }
