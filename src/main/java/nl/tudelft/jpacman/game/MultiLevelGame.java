@@ -5,6 +5,7 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -51,7 +52,7 @@ public class MultiLevelGame extends Game {
     }
 
     /**
-     * If level is won, go to next level.
+     * If level is won, go to next level if there is one.
      */
     public void increaseLevel() {
         if (currentLevel < levels.size() - 1) {
@@ -59,6 +60,7 @@ public class MultiLevelGame extends Game {
             levels.get(currentLevel).registerPlayer(player);
             levels.get(currentLevel).start();
         } else {
+            JOptionPane.showMessageDialog(null, "You've won");
             stop();
         }
 

@@ -17,7 +17,7 @@ import java.util.List;
 public class MultiLevelLauncher extends Launcher {
 
     private MultiLevelGame multiGame;
-    private static String[] mapStrings = {"/level5.txt", "/boardTest.txt", "/board.txt"};
+    private static String[] mapStrings = {"/level5.txt", "/boardTest.txt", "/level5.txt"};
 
     /**
      * @return The game object this launcher will start when {@link #launch()}
