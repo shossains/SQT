@@ -5,6 +5,8 @@ import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Unit;
 import nl.tudelft.jpacman.game.Game;
 import nl.tudelft.jpacman.level.Player;
+import nl.tudelft.jpacman.npc.Ghost;
+import nl.tudelft.jpacman.npc.ghost.Navigation;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,39 +42,35 @@ public class SuspendSystemTest {
 
     /**
      * Test how the ghosts and player behave after the game stops.
-     * @throws InterruptedException If thread sleepd to long.
      */
     @Test
     @SuppressWarnings("PMD.JUnitTestContainsTooManyAsserts")
-    public void scenarioOne() throws InterruptedException {
+    public void scenarioOne() {
         Game game = getGame();
         Player player = getGame().getPlayers().get(0);
         List<Unit> ghostBefore = game.getLevel().getBoard().squareAt(6, 1).getOccupants();
+        Ghost ghost = Navigation.findUnitInBoard(Ghost.class, game.getLevel().getBoard());
 
         assertEquals(player.getScore(), 0); //player should have 0 points to start with
-        assertEquals("class nl.tudelft.jpacman.npc.ghost.Blinky",
-            ghostBefore.get(0).getClass().toString()); //check if the ghost square contains a ghost
+        assertEquals(1, ghostBefore.size()); //ghost is at start location
 
         game.stop();
-        Thread.sleep(200);
 
         game.move(player, Direction.EAST);
-        List<Unit> ghostAfter = game.getLevel().getBoard().squareAt(6, 1).getOccupants();
 
         assertEquals(player.getScore(), 0); //score should still be 0 since it shouldn't move
-        assertEquals("class nl.tudelft.jpacman.npc.ghost.Blinky",
-            ghostAfter.get(0).getClass().toString()); //ghost should still be there
 
         game.start();
-        Thread.sleep(200); //let the ghost move
 
-        List<Unit> emptySquare = game.getLevel().getBoard().squareAt(6, 1).getOccupants();
-        assertEquals(0, emptySquare.size()); //ghost has left start location
+        game.getLevel().move(ghost, Direction.WEST); //Move ghost to the left
+
+        List<Unit> newSquare = game.getLevel().getBoard().squareAt(5, 1).getOccupants();
+        assertEquals(1, newSquare.size()); //ghost has left start location
 
         game.stop();
-        List<Unit> ghostLocation = game.getLevel().getBoard().squareAt(5, 1).getOccupants();
-        assertEquals("class nl.tudelft.jpacman.npc.ghost.Blinky",
-            ghostLocation.get(0).getClass().toString()); //ghost should be on it's new location
+        List<Unit> finalSquare = game.getLevel().getBoard().squareAt(5, 1).getOccupants();
+        assertEquals(1, finalSquare.size()); //ghost still at the same location
+
     }
 
     /**
