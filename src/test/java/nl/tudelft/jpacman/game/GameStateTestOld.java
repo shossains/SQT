@@ -7,32 +7,25 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
- * Abstract Test class for testing the Game states.
+ * Test class for testing the Game states.
  */
-public abstract class GameStateTest {
+public class GameStateTestOld {
     private Launcher launcher;
     private Player player;
     private boolean progress;
 
-    /**
-     * Abstract method which instantiates a launcher.
-     * Used by child classes to test their respective class.
-     *
-     * @return Launcher Abstract launcher created for testing.
-     */
-    public abstract Launcher createLauncher();
 
     /**
      * Setting up things for the tests.
      */
     @BeforeEach
     void setUp() {
-        launcher = createLauncher();
+        launcher = new Launcher();
         launcher.withMapFile("/SneakPathMap_1");
         launcher.launch();
         player = launcher.getGame().getPlayers().get(0);
@@ -286,5 +279,3 @@ public abstract class GameStateTest {
         assertFalse(progress);
     }
 }
-
-
