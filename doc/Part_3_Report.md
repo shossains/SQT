@@ -28,7 +28,7 @@ See Document files.Part_3_Report.docx
 See Document files.Part_3_Report.docx
 
 ### Exercise 9
-See game.GameStateTest.java
+See game.GameStateTestOld.java
 
 ### Exercise 10
 
@@ -54,14 +54,20 @@ Game has been won and player wins.
 ### Exercise 12 
  
 ### Exercise 13
+See game.MultiLevelGame.java
 
 ### Exercise 14
+See MultiLevelLauncher.java
 
 ### Exercise 15
+We made an abstract class out of the original GameStateTest (test.game.GameStateTest.java) and 
+created two childclasses (test.game.GameStateMultiLauncherTest.java and test.game.GameStateLauncherTest.java)
 
 ### Exercise 16
+See same classes as ex.15
 
 ### Exercise 17
+See same classes as ex.15
 
 ### Exercise 18
 

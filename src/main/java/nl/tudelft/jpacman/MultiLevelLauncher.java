@@ -63,6 +63,7 @@ public class MultiLevelLauncher extends Launcher {
 
     /**
      * Set the name(s) of the file(s) containing all level maps.
+     * Replaces the withMapFile method of Launcher in order to use multiple maps.
      *
      * @param fileNames
      *            Maps to be used.
