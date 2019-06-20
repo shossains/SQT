@@ -17,7 +17,7 @@ import java.util.List;
 public class MultiLevelLauncher extends Launcher {
 
     private MultiLevelGame multiGame;
-    private static String[] mapStrings = {"/boardTest.txt", "/level2.txt",
+    private static String[] mapStrings = {"/board.txt", "/level2.txt",
         "/level3.txt", "/level4.txt"};
     private String[] levelMap = mapStrings;
 
@@ -50,7 +50,7 @@ public class MultiLevelLauncher extends Launcher {
     public List<Level> makeLevels() {
         try {
             List<Level> levels = new ArrayList<>();
-            for (String mapString : mapStrings) {
+            for (String mapString : levelMap) {
                 Level level = getMapParser().parseMap(mapString);
                 levels.add(level);
             }
