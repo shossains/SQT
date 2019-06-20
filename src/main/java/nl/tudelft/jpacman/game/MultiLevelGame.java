@@ -5,7 +5,8 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 
-import javax.swing.*;
+
+import javax.swing.JOptionPane;
 import java.util.List;
 
 /**

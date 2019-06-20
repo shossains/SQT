@@ -17,7 +17,9 @@ import java.util.List;
 public class MultiLevelLauncher extends Launcher {
 
     private MultiLevelGame multiGame;
-    private static String[] mapStrings = {"/level5.txt", "/boardTest.txt", "/level5.txt"};
+    private static String[] mapStrings = {"/boardTest.txt", "/level2.txt",
+        "/level3.txt", "/level4.txt"};
+    private String[] levelMap = mapStrings;
 
     /**
      * @return The game object this launcher will start when {@link #launch()}
@@ -57,6 +59,18 @@ public class MultiLevelLauncher extends Launcher {
             throw new PacmanConfigurationException(
                 "Unable to create levels, name = " + getLevelMap(), e);
         }
+    }
+
+    /**
+     * Set the name(s) of the file(s) containing all level maps.
+     *
+     * @param fileNames
+     *            Maps to be used.
+     * @return Levels corresponding to the given map.
+     */
+    public Launcher withMapFile(String[] fileNames) {
+        levelMap = fileNames.clone();
+        return this;
     }
 
     /**
