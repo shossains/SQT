@@ -6,7 +6,7 @@ import nl.tudelft.jpacman.level.Player;
 import nl.tudelft.jpacman.points.PointCalculator;
 
 
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 import java.util.List;
 
 /**
@@ -60,7 +60,7 @@ public class MultiLevelGame extends Game {
             currentLevel++;
             levels.get(currentLevel).registerPlayer(player);
         } else {
-            JOptionPane.showMessageDialog(null, "You've won");
+//            JOptionPane.showMessageDialog(null, "You've won");
             stop();
         }
 
