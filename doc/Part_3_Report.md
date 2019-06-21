@@ -49,10 +49,12 @@ Game has been won and player wins.
 ```
     
 ### Exercise 11
+See Document files.Part_3_Report.docx
 
 
 ### Exercise 12 
- 
+See Document files.Part_3_Report.docx
+
 ### Exercise 13
 See game.MultiLevelGame.java
 
@@ -70,5 +72,25 @@ See same classes as ex.15
 See same classes as ex.15
 
 ### Exercise 18
+Our coverage of the MultiLevelLauncher is 85%. The only branches not covered were the exception
+branch from the makeLevels class which is impossible to recreate and the main method which is not
+testable.
 
 ### Exercise 19
+Pro's:
+- Our implementation of the MultiLevelLauncher is not hardcoded and versatile. The (number) of levels
+The user wants to play is completely up the user itself. If five maps are chosen, all five will be
+parsed and all five will be played consecutively.
+- The hierarchy used in the implementation such as Game > singleplayer or multiplayer || Ghost >
+Inky or Blinky or ect. made this game very easy to understand and expendable.
+- The JavaDoc provided by the developers gave good insight on what several methods did (especially
+the AI part).
+
+Con's:
+- Several checkstyle rules such as ``to many character per line`` are annoying and usually don't
+provide improved code quality. A solution would be to increase the number of character per line.
+- The usage of PlayerList is ambiguous since there only will be one player. Just use one Player
+object instead.
+- The implementation of the keypress is not working properly, if the keypress is hold there is a
+short delay followed by Pacman moving very rapidly. The optimal solution to this is Pacman to
+shorten the delay and slow down the pacman movement afterwards.

@@ -2,15 +2,12 @@ package nl.tudelft.jpacman.game;
 
 import nl.tudelft.jpacman.Launcher;
 import nl.tudelft.jpacman.MultiLevelLauncher;
+import nl.tudelft.jpacman.PacmanConfigurationException;
 import nl.tudelft.jpacman.board.Direction;
-//import nl.tudelft.jpacman.level.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test class for Game using MultiLevelLauncher.
@@ -49,7 +46,6 @@ public class GameStateMultiLauncherTest extends GameStateTest {
     @Test
     void testMultiLevel() {
         assertFalse(launcher.getGame().isInProgress());
-
     }
 
     @Override
@@ -60,5 +56,19 @@ public class GameStateMultiLauncherTest extends GameStateTest {
         launcher.getGame().move(launcher.getGame().getPlayers().get(0), Direction.WEST);
         assertEquals(progress, launcher.getGame().isInProgress());
         assertTrue(progress);
+    }
+
+    /**
+     * Setting up things for the tests.
+     */
+    @Test()
+    void ss() {
+        launcher = (MultiLevelLauncher) createLauncher();
+        String[] maps = {"/testma.txt", "/testm2.txt"};
+        launcher.withMapFile(maps);
+
+        assertThrows(PacmanConfigurationException.class,
+            () -> launcher.launch(),
+            "Could not get resource for: /testma.txt");
     }
 }
