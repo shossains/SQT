@@ -4,6 +4,8 @@ import nl.tudelft.jpacman.level.Level;
 import nl.tudelft.jpacman.level.PlayerFactory;
 import nl.tudelft.jpacman.points.PointCalculator;
 
+import java.util.List;
+
 /**
  * Factory that provides Game objects.
  *
@@ -47,4 +49,20 @@ public class GameFactory {
     protected PlayerFactory getPlayerFactory() {
         return playerFactory;
     }
+
+
+    /**
+     * Creates a game for multiple levels with one player.
+     *
+     * @param levels
+     *              The level to create a game for.
+     * @param pointCalculator
+     *              The way to calculate points upon collisions.
+     * @return A new multi level game.
+     */
+    public MultiLevelGame createMultiLevelGame(List<Level> levels,
+                                               PointCalculator pointCalculator) {
+        return new MultiLevelGame(playerFactory.createPacMan(), levels, pointCalculator);
+    }
+
 }
