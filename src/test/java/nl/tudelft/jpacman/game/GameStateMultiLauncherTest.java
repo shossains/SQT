@@ -83,7 +83,7 @@ public class GameStateMultiLauncherTest extends GameStateTest {
      * in the last level.
      */
     @Test
-    void TestLostPelletLast() {
+    void testLostPelletLast() {
         launcher.getGame().levelWon();
         launcher.getGame().levelWon();
         launcher.getGame().levelWon();
